@@ -11,10 +11,6 @@ INCLUDEPATH += $$PWD/libs/jwt-cpp/include
 
 LIBS += -lcrypto
 
-# You can make your code fail to compile if it uses deprecated APIs.
-# In order to do so, uncomment the following line.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
-
 SOURCES += \
         main.cpp \
         src/legacyscheduler.cpp \
@@ -31,3 +27,22 @@ HEADERS += \
     src/plancsvhelper.h \
     src/scheduler.h \
     src/schedulerservice.h
+
+test{
+    message(Building tests)
+    include(gtest_dependency.pri)
+
+    TEMPLATE = app
+    TARGET = pruefungsplaner-scheduler-tests
+    
+    CONFIG += thread
+    LIBS += -lgtest -lgtest_main
+
+    SOURCES -= main.cpp
+    SOURCES += tests/test.cpp
+}
+else{
+    message(Building app)
+    TEMPLATE = app
+    TARGET = pruefungsplaner-scheduler
+}
