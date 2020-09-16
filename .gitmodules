@@ -1,0 +1,3 @@
+[submodule "libs/pruefungsplaner-datamodel"]
+	path = libs/pruefungsplaner-datamodel
+	url = git@github.com:Zebreus/pruefungsplaner-datamodel.git
