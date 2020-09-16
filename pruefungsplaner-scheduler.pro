@@ -17,6 +17,7 @@ LIBS += -lcrypto
 
 SOURCES += \
         main.cpp \
+        src/legacyscheduler.cpp \
         src/plancsvhelper.cpp \
         src/schedulerservice.cpp
 
@@ -26,6 +27,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    src/legacyscheduler.h \
     src/plancsvhelper.h \
     src/scheduler.h \
     src/schedulerservice.h
