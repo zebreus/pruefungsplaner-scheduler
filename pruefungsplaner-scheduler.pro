@@ -17,6 +17,7 @@ LIBS += -lcrypto
 
 SOURCES += \
         main.cpp \
+        src/plancsvhelper.cpp \
         src/schedulerservice.cpp
 
 # Default rules for deployment.
@@ -25,5 +26,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    src/plancsvhelper.h \
     src/scheduler.h \
     src/schedulerservice.h
