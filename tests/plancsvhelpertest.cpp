@@ -12,6 +12,7 @@
 #include <QTextStream>
 #include "plan.h"
 #include "plancsvhelper.h"
+#include "qthelper.cpp"
 
 using namespace testing;
 

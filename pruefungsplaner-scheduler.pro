@@ -41,6 +41,7 @@ test{
 
     SOURCES -= src/main.cpp
     SOURCES += tests/test.cpp \
+            tests/qthelper.cpp \
             tests/plancsvhelpertest.cpp
 }
 else{
