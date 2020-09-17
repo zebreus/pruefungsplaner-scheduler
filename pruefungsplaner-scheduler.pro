@@ -37,9 +37,11 @@ test{
     
     CONFIG += thread
     LIBS += -lgtest -lgtest_main
+    INCLUDEPATH += src
 
     SOURCES -= src/main.cpp
-    SOURCES += tests/test.cpp
+    SOURCES += tests/test.cpp \
+            tests/plancsvhelpertest.cpp
 }
 else{
     message(Building app)

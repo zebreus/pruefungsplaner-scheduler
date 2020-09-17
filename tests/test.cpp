@@ -1,5 +1,5 @@
-#ifndef TEST_H
-#define TEST_H
+#ifndef TEST_CPP
+#define TEST_CPP
 
 #include <gmock/gmock-matchers.h>
 #include <gtest/gtest.h>
@@ -11,4 +11,4 @@ TEST(mytests, test) {
   ASSERT_THAT(0, Eq(0));
 }
 
-#endif  // TST_TEST1_H
+#endif  // TEST_CPP
