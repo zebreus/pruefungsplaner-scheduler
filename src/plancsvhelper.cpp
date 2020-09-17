@@ -1,11 +1,12 @@
 #include "plancsvhelper.h"
 
-PlanCsvHelper::PlanCsvHelper(QString path) {
-  // TODO implement
+PlanCsvHelper::PlanCsvHelper(QString path) : basePath(path) {
+  initializeFilePaths();
 }
 
-PlanCsvHelper::PlanCsvHelper() {
-  // TODO implement
+PlanCsvHelper::PlanCsvHelper() : temporaryDirectory(new QTemporaryDir()) {
+  basePath = temporaryDirectory->path();
+  initializeFilePaths();
 }
 
 QSharedPointer<Plan> PlanCsvHelper::readPlan() {
@@ -19,16 +20,25 @@ bool PlanCsvHelper::writePlan(QSharedPointer<Plan> plan) {
 }
 
 bool PlanCsvHelper::isWritten() {
-  // TODO implement
-  return false;
+  return examsIntervalsFile.exists() && examsFile.exists() &&
+         groupsExamsFile.exists() && groupsExamsPrefFile.exists();
 }
 
 bool PlanCsvHelper::isScheduled() {
-  // TODO implement
-  return false;
+  return planningExamsResultFile.exists() && groupsExamsResultFile.exists();
 }
 
 QString PlanCsvHelper::getPath() {
-  // TODO implement
-  return "";
+  return basePath;
+}
+
+void PlanCsvHelper::initializeFilePaths() {
+  examsIntervalsFile.setFileName(basePath + "/pruef-intervalle.csv");
+  examsFile.setFileName(basePath + "/pruefungen.csv");
+  groupsExamsFile.setFileName(basePath + "/zuege-pruef.csv");
+  groupsExamsPrefFile.setFileName(basePath + "/zuege-pruef-pref2.csv");
+  planningExamsResultFile.setFileName(basePath +
+                                      "/SPA-ERGEBNIS-PP/SPA-planung-pruef.csv");
+  groupsExamsResultFile.setFileName(basePath +
+                                    "/SPA-ERGEBNIS-PP/SPA-zuege-pruef.csv");
 }

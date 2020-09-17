@@ -19,6 +19,14 @@ class PlanCsvHelper {
   QString basePath;
   QScopedPointer<QTemporaryDir> temporaryDirectory;
 
+  QFile examsIntervalsFile;
+  QFile examsFile;
+  QFile groupsExamsFile;
+  QFile groupsExamsPrefFile;
+
+  QFile planningExamsResultFile;
+  QFile groupsExamsResultFile;
+
  public:
   /**
    *  @brief Creates a PlanCsvHelper for the given path
@@ -79,6 +87,12 @@ class PlanCsvHelper {
    *  @return A QString containing the path
    */
   QString getPath();
+
+ private:
+  /**
+   *  @brief Initialize the QFile objects with the correct paths
+   */
+  void initializeFilePaths();
 };
 
 #endif  // PLANCSVHELPER_H
