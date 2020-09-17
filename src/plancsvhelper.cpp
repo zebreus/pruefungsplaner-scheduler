@@ -4,6 +4,10 @@ PlanCsvHelper::PlanCsvHelper(QString path) {
   // TODO implement
 }
 
+PlanCsvHelper::PlanCsvHelper() {
+  // TODO implement
+}
+
 QSharedPointer<Plan> PlanCsvHelper::readPlan() {
   // TODO implement
   return nullptr;
@@ -22,4 +26,9 @@ bool PlanCsvHelper::isWritten() {
 bool PlanCsvHelper::isScheduled() {
   // TODO implement
   return false;
+}
+
+QString PlanCsvHelper::getPath() {
+  // TODO implement
+  return "";
 }

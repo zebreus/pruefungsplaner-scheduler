@@ -2,8 +2,10 @@
 #define PLANCSVHELPER_H
 
 #include <plan.h>
+#include <QScopedPointer>
 #include <QSharedPointer>
 #include <QString>
+#include <QTemporaryDir>
 
 /**
  *  @class PlanCsvHelper
@@ -15,6 +17,7 @@
 class PlanCsvHelper {
  private:
   QString basePath;
+  QScopedPointer<QTemporaryDir> temporaryDirectory;
 
  public:
   /**
@@ -22,6 +25,14 @@ class PlanCsvHelper {
    *  @param path is the directory the csv files are located
    */
   PlanCsvHelper(QString path);
+
+  /**
+   *  @brief Creates a PlanCsvHelper
+   *
+   *  Creates a PlanCsvHelper with a temporary directory for the files. The
+   * directory will be removed, once this PlanCsvHelper gets destroyed.
+   */
+  PlanCsvHelper();
 
   /**
    *  @brief Create a plan from the files in path
@@ -62,6 +73,12 @@ class PlanCsvHelper {
    *   - SPA-ERGEBNIS-PP/SPA-zuege-pruef.cs
    */
   bool isScheduled();
+
+  /**
+   *  @brief Get the path of the directory containing the csv files
+   *  @return A QString containing the path
+   */
+  QString getPath();
 };
 
 #endif  // PLANCSVHELPER_H
