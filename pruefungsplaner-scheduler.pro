@@ -12,7 +12,7 @@ INCLUDEPATH += $$PWD/libs/jwt-cpp/include
 LIBS += -lcrypto
 
 SOURCES += \
-        main.cpp \
+        src/main.cpp \
         src/legacyscheduler.cpp \
         src/plancsvhelper.cpp \
         src/schedulerservice.cpp
@@ -38,7 +38,7 @@ test{
     CONFIG += thread
     LIBS += -lgtest -lgtest_main
 
-    SOURCES -= main.cpp
+    SOURCES -= src/main.cpp
     SOURCES += tests/test.cpp
 }
 else{
