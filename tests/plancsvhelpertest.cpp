@@ -57,14 +57,14 @@ TEST(planCsvHelperTests, isScheduledDetectsNoResultDirectory) {
 
 TEST(planCsvHelperTests, isScheduledDetectsEmptyResultDirectory) {
   QTemporaryDir emptyResultDirectory;
-  QDir().mkdir(emptyResultDirectory.path().append("/SPA-ERGEBNIS-PP/"));
+  QDir().mkdir(emptyResultDirectory.path() + "/SPA-ERGEBNIS-PP/");
   PlanCsvHelper helper(emptyResultDirectory.path());
   EXPECT_FALSE(helper.isScheduled()) << "Detected as scheduled, but it is not";
 }
 
 TEST(planCsvHelperTests, isScheduledDetectsPartialEmptyResultDirectory) {
   QTemporaryDir partialResultDirectory1;
-  QDir().mkdir(partialResultDirectory1.path().append("/SPA-ERGEBNIS-PP/"));
+  QDir().mkdir(partialResultDirectory1.path() + "/SPA-ERGEBNIS-PP/");
   QFile(partialResultDirectory1.path().append(
             "/SPA-ERGEBNIS-PP/SPA-planung-pruef.csv"))
       .open(QFile::ReadWrite);
@@ -72,7 +72,7 @@ TEST(planCsvHelperTests, isScheduledDetectsPartialEmptyResultDirectory) {
   EXPECT_FALSE(helper1.isScheduled()) << "Detected as scheduled, but it is not";
 
   QTemporaryDir partialResultDirectory2;
-  QDir().mkdir(partialResultDirectory2.path().append("/SPA-ERGEBNIS-PP/"));
+  QDir().mkdir(partialResultDirectory2.path() + "/SPA-ERGEBNIS-PP/");
   QFile(partialResultDirectory2.path().append(
             "/SPA-ERGEBNIS-PP/SPA-zuege-pruef.csv"))
       .open(QFile::ReadWrite);
@@ -82,12 +82,12 @@ TEST(planCsvHelperTests, isScheduledDetectsPartialEmptyResultDirectory) {
 
 TEST(planCsvHelperTests, isScheduledDetectsFullResultDirectory) {
   QTemporaryDir fullResultDirectory;
-  QDir().mkdir(fullResultDirectory.path().append("/SPA-ERGEBNIS-PP/"));
+  QDir().mkdir(fullResultDirectory.path() + "/SPA-ERGEBNIS-PP/");
   QFile(fullResultDirectory.path().append(
             "/SPA-ERGEBNIS-PP/SPA-planung-pruef.csv"))
       .open(QFile::ReadWrite);
   QFile(
-      fullResultDirectory.path().append("/SPA-ERGEBNIS-PP/SPA-zuege-pruef.csv"))
+      fullResultDirectory.path() + "/SPA-ERGEBNIS-PP/SPA-zuege-pruef.csv")
       .open(QFile::ReadWrite);
   PlanCsvHelper helper(fullResultDirectory.path());
   EXPECT_TRUE(helper.isScheduled()) << "Did not detect full result directory";
@@ -102,11 +102,11 @@ TEST(planCsvHelperTests, isWrittenDetectsEmptyDirectory) {
 TEST(planCsvHelperTests, isWrittenDetectsPartialEmptyDirectory) {
   QTemporaryDir directory1;
   QTemporaryDir directory2;
-  QFile(directory1.path().append("/pruef-intervalle.csv"))
+  QFile(directory1.path() + "/pruef-intervalle.csv")
       .open(QFile::ReadWrite);
-  QFile(directory1.path().append("/pruefungen.csv")).open(QFile::ReadWrite);
-  QFile(directory2.path().append("/zuege-pruef.csv")).open(QFile::ReadWrite);
-  QFile(directory2.path().append("/zuege-pruef-pref2.csv"))
+  QFile(directory1.path() + "/pruefungen.csv").open(QFile::ReadWrite);
+  QFile(directory2.path() + "/zuege-pruef.csv").open(QFile::ReadWrite);
+  QFile(directory2.path() + "/zuege-pruef-pref2.csv")
       .open(QFile::ReadWrite);
   PlanCsvHelper helper1(directory1.path());
   PlanCsvHelper helper2(directory2.path());
@@ -116,11 +116,11 @@ TEST(planCsvHelperTests, isWrittenDetectsPartialEmptyDirectory) {
 
 TEST(planCsvHelperTests, isWrittenDetectsFiles) {
   QTemporaryDir directory;
-  QFile(directory.path().append("/pruef-intervalle.csv"))
+  QFile(directory.path() + "/pruef-intervalle.csv")
       .open(QFile::ReadWrite);
-  QFile(directory.path().append("/pruefungen.csv")).open(QFile::ReadWrite);
-  QFile(directory.path().append("/zuege-pruef.csv")).open(QFile::ReadWrite);
-  QFile(directory.path().append("/zuege-pruef-pref2.csv"))
+  QFile(directory.path() + "/pruefungen.csv").open(QFile::ReadWrite);
+  QFile(directory.path() + "/zuege-pruef.csv").open(QFile::ReadWrite);
+  QFile(directory.path() + "/zuege-pruef-pref2.csv")
       .open(QFile::ReadWrite);
   PlanCsvHelper helper(directory.path());
   EXPECT_TRUE(helper.isWritten());
@@ -162,7 +162,7 @@ TEST(planCsvHelperTests, writePlanDetectsMissingDirectory) {
   plan->fromJsonObject(document.object());
 
   QTemporaryDir directory;
-  PlanCsvHelper helper(directory.path().append("/doesnotexist/"));
+  PlanCsvHelper helper(directory.path() + "/doesnotexist/");
   EXPECT_FALSE(helper.writePlan(plan))
       << "Write plan succeeded, but the target directory does not exist";
   EXPECT_FALSE(helper.isWritten()) << "Write plan created directory";
