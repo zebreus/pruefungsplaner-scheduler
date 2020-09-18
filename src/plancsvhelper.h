@@ -157,6 +157,9 @@ class PlanCsvHelper {
    *  @brief Read the pruef-intervalle.csv file and add the information to plan
    *  @param plan is the Plan
    *  @return True if the the file was read successfully
+   *
+   * If reading the file fails, plan has to be considered as invalid and get
+   * deleted
    */
   bool readExamsIntervalsFile(QSharedPointer<Plan> plan);
 
@@ -164,6 +167,9 @@ class PlanCsvHelper {
    *  @brief Read the pruefungen.csv file and add the information to plan
    *  @param plan is the Plan
    *  @return True if the the file was read successfully
+   *
+   * If reading the file fails, plan has to be considered as invalid and get
+   * deleted
    */
   bool readExamsFile(QSharedPointer<Plan> plan);
 
@@ -171,6 +177,9 @@ class PlanCsvHelper {
    *  @brief Read the zuege-pruef.csv file and add the information to plan
    *  @param plan is the Plan
    *  @return True if the the file was read successfully
+   *
+   * If reading the file fails, plan has to be considered as invalid and get
+   * deleted
    */
   bool readGroupsExamsFile(QSharedPointer<Plan> plan);
 
@@ -179,6 +188,9 @@ class PlanCsvHelper {
    * plan
    *  @param plan is the Plan
    *  @return True if the the file was read successfully
+   *
+   * If reading the file fails, plan has to be considered as invalid and get
+   * deleted
    */
   bool readGroupsExamsPrefFile(QSharedPointer<Plan> plan);
 };
