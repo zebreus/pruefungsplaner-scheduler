@@ -336,3 +336,23 @@ bool PlanCsvHelper::writeGroupsExamsPrefFile(QSharedPointer<Plan>) {
 
   return true;
 }
+
+bool PlanCsvHelper::readExamsIntervalsFile(QSharedPointer<Plan> plan) {
+  // TODO implement
+  return false;
+}
+
+bool PlanCsvHelper::readExamsFile(QSharedPointer<Plan> plan) {
+  // TODO implement
+  return false;
+}
+
+bool PlanCsvHelper::readGroupsExamsFile(QSharedPointer<Plan> plan) {
+  // TODO implement
+  return false;
+}
+
+bool PlanCsvHelper::readGroupsExamsPrefFile(QSharedPointer<Plan> plan) {
+  // TODO implement
+  return false;
+}

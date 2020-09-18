@@ -152,6 +152,35 @@ class PlanCsvHelper {
    *  @return True if the the file was written successfully
    */
   bool writeGroupsExamsPrefFile(QSharedPointer<Plan> plan);
+
+  /**
+   *  @brief Read the pruef-intervalle.csv file and add the information to plan
+   *  @param plan is the Plan
+   *  @return True if the the file was read successfully
+   */
+  bool readExamsIntervalsFile(QSharedPointer<Plan> plan);
+
+  /**
+   *  @brief Read the pruefungen.csv file and add the information to plan
+   *  @param plan is the Plan
+   *  @return True if the the file was read successfully
+   */
+  bool readExamsFile(QSharedPointer<Plan> plan);
+
+  /**
+   *  @brief Read the zuege-pruef.csv file and add the information to plan
+   *  @param plan is the Plan
+   *  @return True if the the file was read successfully
+   */
+  bool readGroupsExamsFile(QSharedPointer<Plan> plan);
+
+  /**
+   *  @brief Read the  zuege-pruef-pref2.csv file and add the information to
+   * plan
+   *  @param plan is the Plan
+   *  @return True if the the file was read successfully
+   */
+  bool readGroupsExamsPrefFile(QSharedPointer<Plan> plan);
 };
 
 #endif  // PLANCSVHELPER_H
