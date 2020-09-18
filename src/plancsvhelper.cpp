@@ -32,6 +32,11 @@ QString PlanCsvHelper::getPath() {
   return basePath;
 }
 
+bool PlanCsvHelper::readSchedule(QSharedPointer<Plan> plan) {
+  // TODO implement
+  return false;
+}
+
 void PlanCsvHelper::initializeFilePaths() {
   examsIntervalsFile.setFileName(basePath + "/pruef-intervalle.csv");
   examsFile.setFileName(basePath + "/pruefungen.csv");
@@ -56,8 +61,8 @@ bool PlanCsvHelper::writeExamsIntervalsFile(QSharedPointer<Plan> plan) {
   fileStream << "-ENDE-\n";
 
   fileStream << QString("Maximale Prü/Tag;");
-  for (int i = 0; i<plan->constraints.size();i++) {
-    //TODO add option for max exams per day for constraints to datamodel
+  for (int i = 0; i < plan->constraints.size(); i++) {
+    // TODO add option for max exams per day for constraints to datamodel
     fileStream << "6;";
   }
   fileStream << "\n";
@@ -102,7 +107,7 @@ bool PlanCsvHelper::writeExamsIntervalsFile(QSharedPointer<Plan> plan) {
   */
 
   fileStream << "-ENDE-;";
-  for (int i = 0; i<plan->constraints.size();i++) {
+  for (int i = 0; i < plan->constraints.size(); i++) {
     fileStream << ";";
   }
 
@@ -122,7 +127,7 @@ bool PlanCsvHelper::writeExamsFile(QSharedPointer<Plan> plan) {
     if (module->getOrigin() == "EIT") {
       // SPA-algorithmus fails if there are EIT exams, because "Prüfungen von
       // EIT müssen fest abgesprochen sein!!"
-      break;
+      continue;
     }
 
     // Only one constraint is possible, because the legacy algorithm does not
@@ -169,7 +174,7 @@ bool PlanCsvHelper::writeGroupsExamsFile(QSharedPointer<Plan> plan) {
   fileStream << "-ENDE-\n";
 
   fileStream << QString("Maximale Prü/Tag;");
-  for (int i = 0; i<plan->groups.size();i++) {
+  for (int i = 0; i < plan->groups.size(); i++) {
     fileStream << "2;";
   }
   fileStream << "\n";
@@ -214,7 +219,7 @@ bool PlanCsvHelper::writeGroupsExamsFile(QSharedPointer<Plan> plan) {
   */
 
   fileStream << "-ENDE-;";
-  for (int i = 0; i<plan->groups.size();i++) {
+  for (int i = 0; i < plan->groups.size(); i++) {
     fileStream << ";";
   }
 
