@@ -33,8 +33,107 @@ QString PlanCsvHelper::getPath() {
 }
 
 bool PlanCsvHelper::readSchedule(QSharedPointer<Plan> plan) {
-  // TODO implement
-  return false;
+  if (!planningExamsResultFile.open(QFile::ReadOnly)) {
+    return false;
+  }
+  QTextStream fileStream(&planningExamsResultFile);
+
+  // Check, that firstline is valid
+  if (fileStream.readLine() !=
+      QString("BelegNr;Zug;Modul;Import;Prüfungsform;Zuordnung;Tag;Block;")) {
+    return false;
+  }
+  /*
+  QString firstLine = fileStream.readLine();
+  if (firstLine == "") {
+    return false;
+  }
+  QList<QString> firstWords = firstLine.split(";");
+  if (firstWords.size() != 9) {
+    return false;
+  }
+  if (firstWords[0] != "BelegNr" || firstWords[1] != "Zug" ||
+      firstWords[2] != "Modul" || firstWords[3] != "Import" ||
+      firstWords[4] != QString("Prüfungsform") ||
+      firstWords[5] != "Zuordnung" || firstWords[6] != "Tag" ||
+      firstWords[6] != "Tag" || firstWords[7] != "Block" ||
+      firstWords[8] != "") {
+    return false;
+  }
+  */
+
+  // The modules will only be added to the slots, if the file is correct. Until
+  // then they will be stored here.
+  QList<QPair<Module*, Timeslot*>> modulesToAdd;
+
+  while (!fileStream.atEnd()) {
+    QString line = fileStream.readLine();
+    if (line == "") {
+      return true;
+    }
+    QList<QString> words = line.split(";");
+    if (words.size() != 9) {
+      return false;
+    }
+
+    // Generate module number (BelegNr[,Zug])
+    QString moduleNumber = words[0];
+    if (words[1] != "") {
+      moduleNumber.append(",").append(words[1]);
+    }
+
+    // Find matching module
+    Module* matchingModule = nullptr;
+    for (Module* module : plan->modules) {
+      if (module->getNumber() == moduleNumber) {
+        if (module->getName() == words[2]) {
+          matchingModule = module;
+          break;
+        }
+      }
+    }
+    if (matchingModule == nullptr) {
+      return false;
+    }
+
+    // Find matching timeslot
+    Timeslot* matchingTimeslot;
+    bool dayOk = false;
+    int day = words[6].toInt(&dayOk) - 1;
+    if (!dayOk) {
+      return false;
+    }
+    bool slotOk = false;
+    int slot = words[7].toInt(&slotOk) - 1;
+    if (!slotOk) {
+      return false;
+    }
+
+    if (day < 0 || day / 7 >= plan->weeks.size()) {
+      return false;
+    }
+    Week* weekPointer = plan->weeks[day / 7];
+
+    if (day % 7 >= weekPointer->getDays().size()) {
+      return false;
+    }
+    Day* dayPointer = weekPointer->getDays()[day % 7];
+
+    if (slot < 0 || slot >= dayPointer->getTimeslots().size()) {
+      return false;
+    }
+    matchingTimeslot = dayPointer->getTimeslots()[slot];
+
+    modulesToAdd.append(
+        QPair<Module*, Timeslot*>(matchingModule, matchingTimeslot));
+  }
+
+  // Finally add modules to timeslots
+  for (auto moduleTimeslotPair : modulesToAdd) {
+    moduleTimeslotPair.second->addModule(moduleTimeslotPair.first);
+  }
+
+  return true;
 }
 
 void PlanCsvHelper::initializeFilePaths() {

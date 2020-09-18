@@ -107,6 +107,10 @@ class PlanCsvHelper {
    */
   QString getPath();
 
+  // TODO decide if this should check, that plan is the same plan as in the csv
+  // files. Currently it does not
+  // TODO decide if this should check, that all modules have been assigned a
+  // date
   /**
    *  @brief Add the scheduling information from the files to a plan
    *  @param [in] plan is a pointer to the plan to which the scheduling
