@@ -289,9 +289,37 @@ TEST(planCsvHelperTests, readScheduleDetectsEmptyFiles) {
   ASSERT_FALSE(helper.readSchedule(plan));
 }
 
-TEST(planCsvHelperTests, readScheduleReadsCorrectSchedule) {
-  // TODO think of a proper test
-  ASSERT_TRUE(true);
+TEST(planCsvHelperTests, readScheduleWorksWithReadPlan) {
+    QTemporaryDir directory;
+    //TODO replace system call proper code
+    system(QString("cp -rT ./tests/data/scheduled/ " + directory.path()).toUtf8().constData());
+
+    PlanCsvHelper helper(directory.path());
+    QSharedPointer<Plan> plan = helper.readPlan();
+    ASSERT_NE(plan, QSharedPointer<Plan>(nullptr));
+    ASSERT_TRUE(helper.readSchedule(plan));
+}
+
+TEST(planCsvHelperTests, readScheduleWorksAndAlsoReadsCorrectSchedule) {
+    QTemporaryDir directory;
+    //TODO replace system call proper code
+    system(QString("cp -rT ./tests/data/scheduled/ " + directory.path()).toUtf8().constData());
+
+    PlanCsvHelper helper(directory.path());
+    QSharedPointer<Plan> plan = helper.readPlan();
+    ASSERT_NE(plan, QSharedPointer<Plan>(nullptr));
+    ASSERT_TRUE(helper.readSchedule(plan));
+
+    // Assert that the tested modules can be accessed
+    ASSERT_GE(plan->weeks.size(), 2);
+    ASSERT_GE(plan->weeks[1]->getDays().size(), 3);
+    ASSERT_GE(plan->weeks[1]->getDays()[2]->getTimeslots().size(), 5);
+    ASSERT_GE(plan->weeks[1]->getDays()[1]->getTimeslots().size(), 5);
+    ASSERT_GE(plan->weeks[1]->getDays()[2]->getTimeslots()[4]->getModules().size(), 1);
+    ASSERT_GE(plan->weeks[1]->getDays()[1]->getTimeslots()[2]->getModules().size(), 1);
+    // Check two of the modules from the file
+    ASSERT_EQ(plan->weeks[1]->getDays()[2]->getTimeslots()[4]->getModules()[0]->getNumber(), "30.2342");
+    ASSERT_EQ(plan->weeks[1]->getDays()[1]->getTimeslots()[2]->getModules()[0]->getNumber(), "30.2476");
 }
 
 #endif  // TEST_CPP
