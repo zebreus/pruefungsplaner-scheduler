@@ -40,8 +40,7 @@ test{
     INCLUDEPATH += src
 
     SOURCES -= src/main.cpp
-    SOURCES += tests/test.cpp \
-            tests/qthelper.cpp \
+    SOURCES += tests/qthelper.cpp \
             tests/plancsvhelpertest.cpp
 }
 else{
