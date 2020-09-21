@@ -36,7 +36,7 @@ bool LegacyScheduler::prepareEnvironment() {
 
 bool LegacyScheduler::executeScheduler() {
   int exitCode = system(
-      QString("echo -ne jn | ./SPA-algorithmus -p . -PP").toUtf8().constData());
+      QString("echo -ne jn | ./SPA-algorithmus -p " + workingDirectory.path() + " -PP").toUtf8().constData());
   if (exitCode == 0) {
     return true;
   } else {
