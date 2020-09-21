@@ -142,6 +142,12 @@ TEST(planCsvHelperTests, writePlanCreatesFiles) {
   EXPECT_TRUE(helper.isWritten()) << "Plan is not written after check";
 }
 
+TEST(planCsvHelperTests, writePlanReturnsFalseWithNullptr) {
+  QTemporaryDir directory;
+  PlanCsvHelper helper(directory.path());
+  EXPECT_FALSE(helper.writePlan(nullptr));
+}
+
 TEST(planCsvHelperTests, writePlanDetectsMissingDirectory) {
   QFile file("./tests/data/plan.json");
   ASSERT_TRUE(file.exists())

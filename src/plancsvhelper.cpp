@@ -64,6 +64,9 @@ QSharedPointer<Plan> PlanCsvHelper::readPlan() {
 }
 
 bool PlanCsvHelper::writePlan(QSharedPointer<Plan> plan) {
+  if (plan == nullptr) {
+    return false;
+  }
   return writeExamsIntervalsFile(plan) && writeExamsFile(plan) &&
          writeGroupsExamsFile(plan) && writeGroupsExamsPrefFile(plan);
 }
