@@ -1,7 +1,7 @@
 QT -= gui
 QT += websockets
 
-CONFIG += c++11 console
+CONFIG += c++14 console
 CONFIG -= app_bundle
 
 include($$PWD/libs/pruefungsplaner-datamodel/pruefungsplaner-datamodel.pri)
@@ -15,7 +15,8 @@ SOURCES += \
         src/main.cpp \
         src/legacyscheduler.cpp \
         src/plancsvhelper.cpp \
-        src/schedulerservice.cpp
+        src/schedulerservice.cpp \
+        tests/legacyschedulertest.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -32,6 +33,7 @@ test{
     message(Building tests)
     include(gtest_dependency.pri)
 
+    QT += testlib
     TEMPLATE = app
     TARGET = pruefungsplaner-scheduler-tests
     
