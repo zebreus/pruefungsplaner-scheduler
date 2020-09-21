@@ -18,6 +18,7 @@ class LegacyScheduler : public QObject, public Scheduler {
   Q_OBJECT
 
  private:
+  QTemporaryDir workingDirectory;
   PlanCsvHelper csvHelper;
   QSharedPointer<Plan> originalPlan;
 
@@ -37,11 +38,11 @@ class LegacyScheduler : public QObject, public Scheduler {
   bool startScheduling();
 
  private:
-  void prepareEnvironment();
+  bool prepareEnvironment();
 
-  void executeScheduler();
+  bool executeScheduler();
 
-  void readResults();
+  bool readResults();
 
  signals:
 
