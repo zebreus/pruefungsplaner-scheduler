@@ -46,9 +46,7 @@ bool LegacyScheduler::executeScheduler() {
 }
 
 bool LegacyScheduler::readResults() {
-  // TODO decide if this should change the originalPlan and emit it, or just
-  // emit a copy
-  QSharedPointer<Plan> plan = csvHelper.readPlan();
+  QSharedPointer<Plan> plan = originalPlan;
   if (plan == nullptr) {
     emit failedScheduling("Failed to read plan");
     return false;
