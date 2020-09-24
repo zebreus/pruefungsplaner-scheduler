@@ -16,7 +16,8 @@ SOURCES += \
         src/legacyscheduler.cpp \
         src/plancsvhelper.cpp \
         src/schedulerservice.cpp \
-        tests/legacyschedulertest.cpp
+        tests/legacyschedulertest.cpp \
+        tests/schedulerservicetest.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
