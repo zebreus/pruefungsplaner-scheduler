@@ -3,7 +3,9 @@
 
 #include <QJsonValue>
 #include <QObject>
-//#include "Scheduler.h"
+#include "legacyscheduler.h"
+#include "plan.h"
+#include "scheduler.h"
 
 /**
  *  @class SchedulerService
@@ -11,12 +13,16 @@
  *
  *  The SchedulerService provides methods to schedule plans.
  *  Only one plan can be scheduled simultaneously.
+ *
+ *  This class will be rewritten, when the jsonrpc module supports signals.
  */
 class SchedulerService : public QObject {
   Q_OBJECT
 
  private:
-  // Scheduler &scheduler;
+  QScopedPointer<Scheduler> scheduler;
+  double progress;
+  QJsonValue result;
 
  public:
   /**
@@ -34,25 +40,28 @@ class SchedulerService : public QObject {
    *  @param [in] parent is the pare
    *  @return A boolean indicating if scheduling was started
    *
-   *  Returns false if a plan is already being scheduled or plan is invalid
+   *  Returns false if a plan is already being scheduled
    */
-  bool startScheduling(QJsonValue plan);
+  bool startScheduling(QJsonObject plan);
 
   /**
    *  @brief Get the progress of scheduling
    *  @return A double between 0.0 and 1.0 representing the current planning
    * progress
    *
-   *  Get the progress of scheduling
+   *  Get the progress of scheduling. If scheduling was successful or failed it
+   * returns 1.0
    */
   double getProgress();
 
   /**
    *  @brief Get the scheduled plan
-   *  @return A QJsonValue containing the scheduled plan or nothing
+   *  @return A QJsonValue containing the scheduled plan, an errormessage or
+   * nothing
    *
    *  Returns the result as a JsonValue. If no result exists, a QJsonValue with
-   * the value undefined is returned.
+   * type QJsonValue::Undefined is returned. If no result exists, a QJsonValue
+   * with the error message as a string is returned.
    */
   QJsonValue getResult();
 };
