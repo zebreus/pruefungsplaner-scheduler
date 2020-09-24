@@ -107,4 +107,23 @@ inline QJsonObject getInvalidJsonPlan() {
   return document.object();
 }
 
+/**
+ *  @brief Load all the files that are expected after successful scheduling into
+ * a directory
+ *  @return A bool indicating success
+ *
+ * If there are problems loading the files the prepareScheduledDirectoryWorks
+ * test will fail
+ */
+inline bool prepareScheduledDirectory(QString path) {
+  // TODO replace system call with proper code
+  int result = system(
+      QString("cp -rT ./tests/data/scheduled/ " + path).toUtf8().constData());
+  if (result == 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 #endif

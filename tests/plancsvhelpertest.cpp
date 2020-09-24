@@ -232,10 +232,7 @@ TEST(planCsvHelperTests, readScheduleDetectsEmptyFiles) {
 
 TEST(planCsvHelperTests, readScheduleWorksWithReadPlan) {
   QTemporaryDir directory;
-  // TODO replace system call proper code
-  system(QString("cp -rT ./tests/data/scheduled/ " + directory.path())
-             .toUtf8()
-             .constData());
+  prepareScheduledDirectory(directory.path());
 
   PlanCsvHelper helper(directory.path());
   QSharedPointer<Plan> plan = helper.readPlan();
@@ -245,10 +242,7 @@ TEST(planCsvHelperTests, readScheduleWorksWithReadPlan) {
 
 TEST(planCsvHelperTests, readScheduleWorksAndAlsoReadsCorrectSchedule) {
   QTemporaryDir directory;
-  // TODO replace system call proper code
-  system(QString("cp -rT ./tests/data/scheduled/ " + directory.path())
-             .toUtf8()
-             .constData());
+  prepareScheduledDirectory(directory.path());
 
   PlanCsvHelper helper(directory.path());
   QSharedPointer<Plan> plan = helper.readPlan();
