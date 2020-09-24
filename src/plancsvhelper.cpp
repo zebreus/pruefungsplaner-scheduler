@@ -577,7 +577,7 @@ bool PlanCsvHelper::readGroupsExamsFile(QSharedPointer<Plan> plan) {
   return true;
 }
 
-bool PlanCsvHelper::readGroupsExamsPrefFile(QSharedPointer<Plan> plan) {
+bool PlanCsvHelper::readGroupsExamsPrefFile(QSharedPointer<Plan>) {
   // The contents of the groupsExamsPrefFile are not relevant for plan
   return true;
 }
