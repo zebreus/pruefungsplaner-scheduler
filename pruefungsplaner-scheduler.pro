@@ -15,10 +15,7 @@ SOURCES += \
         src/main.cpp \
         src/legacyscheduler.cpp \
         src/plancsvhelper.cpp \
-        src/schedulerservice.cpp \
-        tests/legacyschedulertest.cpp \
-        tests/schedulerservicetest.cpp \
-        tests/testdatatest.cpp
+        src/schedulerservice.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -29,8 +26,7 @@ HEADERS += \
     src/legacyscheduler.h \
     src/plancsvhelper.h \
     src/scheduler.h \
-    src/schedulerservice.h \
-    tests/testdatahelper.h
+    src/schedulerservice.h
 
 test{
     message(Building tests)
@@ -46,7 +42,11 @@ test{
 
     SOURCES -= src/main.cpp
     SOURCES += tests/qthelper.cpp \
-            tests/plancsvhelpertest.cpp
+            tests/plancsvhelpertest.cpp \
+            tests/legacyschedulertest.cpp \
+            tests/schedulerservicetest.cpp \
+            tests/testdatatest.cpp
+    HEADERS += tests/testdatahelper.h
 }
 else{
     message(Building app)
