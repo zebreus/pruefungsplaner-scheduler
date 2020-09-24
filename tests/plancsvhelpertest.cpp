@@ -13,6 +13,7 @@
 #include "plan.h"
 #include "plancsvhelper.h"
 #include "qthelper.cpp"
+#include "testdatahelper.h"
 
 using namespace testing;
 
@@ -122,18 +123,7 @@ TEST(planCsvHelperTests, isWrittenDetectsFiles) {
 }
 
 TEST(planCsvHelperTests, writePlanCreatesFiles) {
-  QFile file("./tests/data/plan.json");
-  ASSERT_TRUE(file.exists())
-      << "Example plan json file (" << file.fileName().constData()
-      << ") does not exist.";
-  ASSERT_TRUE(file.open(QFile::ReadOnly | QFile::Text))
-      << "Cannot open example plan json file (" << file.fileName().constData()
-      << ").";
-  QString jsonString = QTextStream(&file).readAll();
-  QJsonDocument document = QJsonDocument::fromJson(jsonString.toUtf8());
-  ASSERT_TRUE(document.isObject()) << "Json file does not contain an object";
-  QSharedPointer<Plan> plan(new Plan());
-  plan->fromJsonObject(document.object());
+  QSharedPointer<Plan> plan = getValidPlan();
 
   QTemporaryDir directory;
   PlanCsvHelper helper(directory.path());
@@ -149,18 +139,7 @@ TEST(planCsvHelperTests, writePlanReturnsFalseWithNullptr) {
 }
 
 TEST(planCsvHelperTests, writePlanDetectsMissingDirectory) {
-  QFile file("./tests/data/plan.json");
-  ASSERT_TRUE(file.exists())
-      << "Example plan json file (" << file.fileName().constData()
-      << ") does not exist.";
-  ASSERT_TRUE(file.open(QFile::ReadOnly | QFile::Text))
-      << "Cannot open example plan json file (" << file.fileName().constData()
-      << ").";
-  QString jsonString = QTextStream(&file).readAll();
-  QJsonDocument document = QJsonDocument::fromJson(jsonString.toUtf8());
-  ASSERT_TRUE(document.isObject()) << "Json file does not contain an object";
-  QSharedPointer<Plan> plan(new Plan());
-  plan->fromJsonObject(document.object());
+  QSharedPointer<Plan> plan = getValidPlan();
 
   QTemporaryDir directory;
   PlanCsvHelper helper(directory.path() + "/doesnotexist/");
@@ -193,18 +172,7 @@ TEST(planCsvHelperTests, readPlanReturnsNullptrOnEmptyFiles) {
 }
 
 TEST(planCsvHelperTests, readPlanReadsWrittenPlan) {
-  QFile file("./tests/data/plan.json");
-  ASSERT_TRUE(file.exists())
-      << "Example plan json file (" << file.fileName().constData()
-      << ") does not exist.";
-  ASSERT_TRUE(file.open(QFile::ReadOnly | QFile::Text))
-      << "Cannot open example plan json file (" << file.fileName().constData()
-      << ").";
-  QString jsonString = QTextStream(&file).readAll();
-  QJsonDocument document = QJsonDocument::fromJson(jsonString.toUtf8());
-  ASSERT_TRUE(document.isObject()) << "Json file does not contain an object";
-  QSharedPointer<Plan> plan(new Plan());
-  plan->fromJsonObject(document.object());
+  QSharedPointer<Plan> plan = getValidPlan();
 
   QTemporaryDir directory;
   PlanCsvHelper helper(directory.path());
@@ -214,18 +182,7 @@ TEST(planCsvHelperTests, readPlanReadsWrittenPlan) {
 }
 
 TEST(planCsvHelperTests, readPlanReadsWrittenPlanCorrect) {
-  QFile file("./tests/data/plan.json");
-  ASSERT_TRUE(file.exists())
-      << "Example plan json file (" << file.fileName().constData()
-      << ") does not exist.";
-  ASSERT_TRUE(file.open(QFile::ReadOnly | QFile::Text))
-      << "Cannot open example plan json file (" << file.fileName().constData()
-      << ").";
-  QString jsonString = QTextStream(&file).readAll();
-  QJsonDocument document = QJsonDocument::fromJson(jsonString.toUtf8());
-  ASSERT_TRUE(document.isObject()) << "Json file does not contain an object";
-  QSharedPointer<Plan> plan(new Plan());
-  plan->fromJsonObject(document.object());
+  QSharedPointer<Plan> plan = getValidPlan();
 
   QTemporaryDir directory;
   PlanCsvHelper helper(directory.path());
@@ -252,18 +209,7 @@ TEST(planCsvHelperTests, readPlanReadsWrittenPlanCorrect) {
 }
 
 TEST(planCsvHelperTests, readScheduleDetectsMissingFiles) {
-  QFile file("./tests/data/plan.json");
-  ASSERT_TRUE(file.exists())
-      << "Example plan json file (" << file.fileName().constData()
-      << ") does not exist.";
-  ASSERT_TRUE(file.open(QFile::ReadOnly | QFile::Text))
-      << "Cannot open example plan json file (" << file.fileName().constData()
-      << ").";
-  QString jsonString = QTextStream(&file).readAll();
-  QJsonDocument document = QJsonDocument::fromJson(jsonString.toUtf8());
-  ASSERT_TRUE(document.isObject()) << "Json file does not contain an object";
-  QSharedPointer<Plan> plan(new Plan());
-  plan->fromJsonObject(document.object());
+  QSharedPointer<Plan> plan = getValidPlan();
 
   QTemporaryDir directory;
   PlanCsvHelper helper(directory.path());
@@ -271,18 +217,7 @@ TEST(planCsvHelperTests, readScheduleDetectsMissingFiles) {
 }
 
 TEST(planCsvHelperTests, readScheduleDetectsEmptyFiles) {
-  QFile file("./tests/data/plan.json");
-  ASSERT_TRUE(file.exists())
-      << "Example plan json file (" << file.fileName().constData()
-      << ") does not exist.";
-  ASSERT_TRUE(file.open(QFile::ReadOnly | QFile::Text))
-      << "Cannot open example plan json file (" << file.fileName().constData()
-      << ").";
-  QString jsonString = QTextStream(&file).readAll();
-  QJsonDocument document = QJsonDocument::fromJson(jsonString.toUtf8());
-  ASSERT_TRUE(document.isObject()) << "Json file does not contain an object";
-  QSharedPointer<Plan> plan(new Plan());
-  plan->fromJsonObject(document.object());
+  QSharedPointer<Plan> plan = getValidPlan();
 
   QTemporaryDir directory;
   QDir().mkdir(directory.path() + "/SPA-ERGEBNIS-PP/");
