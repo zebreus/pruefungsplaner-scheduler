@@ -12,63 +12,9 @@
 #include <QString>
 #include "plan.h"
 #include "schedulerservice.h"
-
-/**
- *  @brief Load a schedulable plan as a QJsonValue
- *  @return A QJsonValue containing the plan
- *
- * If there are problems loading the file or the file is incorrect the
- * getValidJsonPlanWorks test will fail
- */
-QJsonObject getValidJsonPlan() {
-  QFile file("./tests/data/plan.json");
-  EXPECT_TRUE(file.exists())
-      << "Example plan json file (" << file.fileName().constData()
-      << ") does not exist.";
-  EXPECT_TRUE(file.open(QFile::ReadOnly | QFile::Text))
-      << "Cannot open example plan json file (" << file.fileName().constData()
-      << ").";
-  QString jsonString = QTextStream(&file).readAll();
-  QJsonDocument document = QJsonDocument::fromJson(jsonString.toUtf8());
-  EXPECT_TRUE(document.isObject()) << "Json file does not contain an object.";
-  return document.object();
-}
-
-/**
- *  @brief Load an unschedulable Plan as a QJsonValue
- *  @return A QJsonValue containing the plan
- *
- * The returned Plan can not be scheduled without conflicts
- * If there are problems loading the file or the file is incorrect the
- * getInvalidJsonPlanWorks test will fail
- */
-QJsonObject getInvalidJsonPlan() {
-  // TODO create invalid plan json
-  QFile file("./tests/data/unschedulableplan.json");
-  EXPECT_TRUE(file.exists())
-      << "Unschedulable plan json file (" << file.fileName().constData()
-      << ") does not exist.";
-  EXPECT_TRUE(file.open(QFile::ReadOnly | QFile::Text))
-      << "Cannot open unschedulable plan json file ("
-      << file.fileName().constData() << ").";
-  QString jsonString = QTextStream(&file).readAll();
-  QJsonDocument document = QJsonDocument::fromJson(jsonString.toUtf8());
-  EXPECT_TRUE(document.isObject())
-      << "Unschedulable Plan json file does not contain an object.";
-  return document.object();
-}
+#include "testdatahelper.h"
 
 using namespace testing;
-
-TEST(testDataTests, getValidJsonPlanWorks) {
-  QJsonValue plan = getValidJsonPlan();
-  ASSERT_TRUE(plan.isObject());
-}
-
-TEST(testDataTests, getInvalidJsonPlanWorks) {
-  QJsonValue plan = getInvalidJsonPlan();
-  ASSERT_TRUE(plan.isObject());
-}
 
 TEST(schedulerServiceTests, getResultAfterSchedulingReturnsPlan) {
   QJsonObject jsonPlan = getValidJsonPlan();
