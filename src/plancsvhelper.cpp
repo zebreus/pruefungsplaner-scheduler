@@ -191,6 +191,13 @@ bool PlanCsvHelper::readSchedule(QSharedPointer<Plan> plan) {
 
   // Finally add modules to timeslots
   for (auto moduleTimeslotPair : modulesToAdd) {
+    for (Week* week : plan->weeks) {
+      for (Day* day : week->getDays()) {
+        for (Timeslot* timeslot : day->getTimeslots()) {
+          timeslot->removeModule(moduleTimeslotPair.first);
+        }
+      }
+    }
     moduleTimeslotPair.second->addModule(moduleTimeslotPair.first);
   }
 
