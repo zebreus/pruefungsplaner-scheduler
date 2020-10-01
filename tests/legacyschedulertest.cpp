@@ -166,4 +166,33 @@ TEST(legacySchedulerTests, startSchedulingEmitsFullProgressAfterSuccess) {
       << "Expected the last updateProgress signal to emit 1.0, but got "
       << lastProgressUpdate;
 }
+
+TEST(legacySchedulerTests, startSchedulingRemovesOldScheduledModulesFromPlan) {
+  QSharedPointer<Plan> plan = getValidPlan();
+  // Preschedule a module twice, so at least one of them gets removed
+  ASSERT_GE(plan->weeks.size(), 1);
+  ASSERT_GE(plan->weeks[0]->getDays().size(), 1);
+  ASSERT_GE(plan->weeks[0]->getDays()[0]->getTimeslots().size(), 2);
+  ASSERT_GE(plan->modules.size(), 1);
+  plan->weeks[0]->getDays()[0]->getTimeslots()[0]->addModule(plan->modules[0]);
+  plan->weeks[0]->getDays()[0]->getTimeslots()[1]->addModule(plan->modules[0]);
+
+  LegacyScheduler scheduler(plan);
+  bool emittedFinished = false;
+  QObject::connect(&scheduler, &LegacyScheduler::finishedScheduling,
+                   [&emittedFinished](auto) { emittedFinished = true; });
+
+  ASSERT_TRUE(scheduler.startScheduling());
+
+  QTime limit = QTime::currentTime().addMSecs(500);
+  while (QTime::currentTime() < limit && !emittedFinished) {
+    QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
+  }
+
+  EXPECT_FALSE(
+      plan->weeks[0]->getDays()[0]->getTimeslots()[0]->getModules().contains(
+          plan->modules[0]) &&
+      plan->weeks[0]->getDays()[0]->getTimeslots()[1]->getModules().contains(
+          plan->modules[0]));
+}
 #endif

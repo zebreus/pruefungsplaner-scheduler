@@ -116,6 +116,10 @@ class PlanCsvHelper {
    *  @param [in] plan is a pointer to the plan to which the scheduling
    * information will be added
    *  @return True if succeeded
+   *
+   * Every scheduled module, that is read from the csv file will only be
+   * scheduled once in plan. Old schedulings for modules contained in the csv
+   * file will be removed.
    */
   bool readSchedule(QSharedPointer<Plan> plan);
 
