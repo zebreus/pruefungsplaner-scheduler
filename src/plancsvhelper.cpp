@@ -68,7 +68,8 @@ bool PlanCsvHelper::writePlan(QSharedPointer<Plan> plan) {
     return false;
   }
   return writeExamsIntervalsFile(plan) && writeExamsFile(plan) &&
-         writeGroupsExamsFile(plan) && writeGroupsExamsPrefFile(plan);
+         writeGroupsExamsFile(plan) && writeGroupsExamsPrefFile(plan) &&
+         writePlanningExamsResultFile(plan);
 }
 
 bool PlanCsvHelper::isWritten() {
@@ -407,6 +408,104 @@ bool PlanCsvHelper::writeGroupsExamsPrefFile(QSharedPointer<Plan>) {
   fileStream << "-ENDE-;;;;;";
 
   groupsExamsPrefFile.close();
+  return true;
+}
+
+bool PlanCsvHelper::writePlanningExamsResultFile(QSharedPointer<Plan> plan) {
+  if (!QDir(basePath).exists()) {
+    return false;
+  }
+  QDir().mkpath(basePath + "/SPA-ERGEBNIS-PP");
+  if (!planningExamsResultFile.open(QFile::ReadWrite)) {
+    return false;
+  }
+  QTextStream fileStream(&planningExamsResultFile);
+  fileStream << "BelegNr;Zug;Modul;Import;Prüfungsform;Zuordnung;Tag;Block;\n";
+  int weekId = -1;
+  for (Week* week : plan->getWeeks()) {
+    weekId++;
+    int dayId = -1;
+    for (Day* day : week->getDays()) {
+      dayId++;
+      int timeslotId = -1;
+      for (Timeslot* timeslot : day->getTimeslots()) {
+        timeslotId++;
+        for (Module* module : timeslot->getModules()) {
+          // TODO find a better name for this list
+          QList<QString> moduleNumberParts =
+              module->getNumber().split(',', Qt::SkipEmptyParts);
+          if (moduleNumberParts.size() >= 1) {
+            fileStream << moduleNumberParts[0];
+          }
+          fileStream << ";";
+          if (moduleNumberParts.size() >= 2) {
+            fileStream << moduleNumberParts[1];
+          }
+          fileStream << ";";
+          fileStream << module->getName() << ";";
+          if (module->getOrigin() == "") {
+            fileStream << "0";
+          } else {
+            fileStream << "1";
+          }
+          fileStream << ";";
+          // TODO add Pruefungsform to datamodel
+          fileStream << "K"
+                     << ";";
+          for (Group* group : module->getGroups()) {
+            fileStream << group->name() << "/";
+          }
+          // TODO find out what these words mean
+          fileStream << "ALLE ("
+                     << blockNames[weekId * 6 * 6 + dayId * 6 + timeslotId]
+                     << ");";
+
+          fileStream << weekId * 7 + dayId + 1 << ";" << timeslotId + 1
+                     << ";\n";
+        }
+      }
+    }
+    planningExamsResultFile.close();
+    return true;
+  }
+
+  for (Module* module : plan->modules) {
+    // TODO Check somewhere else
+    if (module->getOrigin() == "EIT") {
+      // SPA-algorithmus fails if there are EIT exams, because "Prüfungen von
+      // EIT müssen fest abgesprochen sein!!"
+      continue;
+    }
+
+    // Only one constraint is possible, because the legacy algorithm does not
+    // support more
+    if (module->constraints.size() >= 1) {
+      fileStream << module->constraints[0]->name();
+    }
+    fileStream << ";";
+
+    // TODO Check somewhere, that groupnames do not contain commas
+    QString divider = "";
+    for (Group* group : module->groups) {
+      fileStream << divider << group->name();
+      divider = ",";
+    }
+    fileStream << ";";
+
+    fileStream << module->getName() << ";";
+    fileStream << module->getNumber() << ";";
+    fileStream << module->getOrigin() << ";";
+    // TODO find out what K or P means and add to datamodel
+    fileStream << "K"
+               << ";";
+    // TODO add duration to datamodel and add it here
+    fileStream << "";
+
+    fileStream << "\n";
+  }
+  fileStream << "-ENDE-;;;;;;";
+
+  examsFile.close();
   return true;
 }
 

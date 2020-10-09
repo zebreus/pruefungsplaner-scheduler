@@ -296,4 +296,28 @@ TEST(planCsvHelperTests, readScheduleRemovesOldScheduledModules) {
           plan->modules[0]));
 }
 
+TEST(planCsvHelperTests, writePlanWritesProbablyCorrectScheduleFile) {
+  QSharedPointer<Plan> plan = getValidPlan();
+  ASSERT_GE(plan->weeks.size(), 1);
+  ASSERT_GE(plan->weeks[0]->getDays().size(), 1);
+  ASSERT_GE(plan->weeks[0]->getDays()[0]->getTimeslots().size(), 2);
+  ASSERT_GE(plan->modules.size(), 3);
+  plan->weeks[0]->getDays()[0]->getTimeslots()[0]->addModule(plan->modules[0]);
+  plan->weeks[0]->getDays()[0]->getTimeslots()[1]->addModule(plan->modules[1]);
+
+  QTemporaryDir directory;
+  PlanCsvHelper helper(directory.path());
+  EXPECT_TRUE(helper.writePlan(plan));
+  QFile resultFile(
+      directory.path().append("/SPA-ERGEBNIS-PP/SPA-planung-pruef.csv"));
+  ASSERT_TRUE(resultFile.open(QFile::ReadOnly));
+  QTextStream in(&resultFile);
+  int lineCount = 0;
+  while (!in.atEnd()) {
+    in.readLine();
+    lineCount++;
+  }
+  EXPECT_EQ(lineCount, 3);
+}
+
 #endif  // TEST_CPP

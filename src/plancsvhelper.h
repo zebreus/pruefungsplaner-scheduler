@@ -73,9 +73,9 @@ class PlanCsvHelper {
    *  @return True if the plan was written successfully
    *
    *  Writes the plan to csv files.
-   *  Any scheduling information in plan will not be written.
-   *  If csv files already exist in the path, everything there will be deleted
-   * and new csv files will be written.
+   *  If the plan contains scheduling information it will also be written, but
+   *  not to the groupsExamsResultFile. If csv files already exist in the path,
+   *  everything there will be deleted and new csv files will be written.
    */
   bool writePlan(QSharedPointer<Plan> plan);
 
@@ -158,6 +158,13 @@ class PlanCsvHelper {
   bool writeGroupsExamsPrefFile(QSharedPointer<Plan> plan);
 
   /**
+   *  @brief Write the SPA-ERGEBNIS-PP/SPA-planung-pruef.csv file
+   *  @param [in] plan is the plan, that will be written
+   *  @return True if the the file was written successfully
+   */
+  bool writePlanningExamsResultFile(QSharedPointer<Plan> plan);
+
+  /**
    *  @brief Read the pruef-intervalle.csv file and add the information to plan
    *  @param plan is the Plan
    *  @return True if the the file was read successfully
@@ -188,7 +195,7 @@ class PlanCsvHelper {
   bool readGroupsExamsFile(QSharedPointer<Plan> plan);
 
   /**
-   *  @brief Read the  zuege-pruef-pref2.csv file and add the information to
+   *  @brief Read the zuege-pruef-pref2.csv file and add the information to
    * plan
    *  @param plan is the Plan
    *  @return True if the the file was read successfully
