@@ -1,0 +1,2685 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<uml version="6">
+  <argo version="6">
+    <documentation>
+      <authorname></authorname>
+      <authoremail></authoremail>
+      <version>0.35.1</version>
+      <description>
+        
+      </description>
+    </documentation>
+    <settings>
+      <notationlanguage>UML 1.4</notationlanguage>
+      <showboldnames>false</showboldnames>
+      <useguillemots>false</useguillemots>
+      <showassociationnames>true</showassociationnames>
+      <showvisibility>true</showvisibility>
+      <showmultiplicity>false</showmultiplicity>
+      <showinitialvalue>false</showinitialvalue>
+      <showproperties>false</showproperties>
+      <showtypes>true</showtypes>
+      <showstereotypes>false</showstereotypes>
+      <showsingularmultiplicities>true</showsingularmultiplicities>
+      <defaultshadowwidth>1</defaultshadowwidth>
+      <hidebidirectionalarrows>true</hidebidirectionalarrows>    
+      <fontname>Dialog</fontname>
+      <fontsize>12</fontsize>
+      <defaultstereotypeview>0</defaultstereotypeview>
+      <activediagram>Klassendiagramm</activediagram>
+    </settings>
+    <searchpath href="PROJECT_DIR" />
+    <members>
+      <member type="profile"
+              name="diagram.zargo_profile.profile" />
+      <member type="xmi"
+              name="diagram.zargo.xmi" />
+      <member type="pgml"
+              name="diagram.zargo_Klassendiagramm.pgml"
+              diagramclass="org.argouml.uml.diagram.static_structure.ui.UMLClassDiagram"
+              diagramname="Klassendiagramm" />
+      <member type="pgml"
+              name="diagram.zargo_Anwendungsfalldiagramm.pgml"
+              diagramclass="org.argouml.uml.diagram.use_case.ui.UMLUseCaseDiagram"
+              diagramname="Anwendungsfalldiagramm" />
+      <member type="todo"
+              name="diagram.zargo.todo" />
+    </members>
+    <historyfile name="" />
+  </argo>
+<profile>
+		<plugin>
+			UML 1.4
+		</plugin>
+		<plugin>
+			GoodPractices
+		</plugin>
+		<plugin>
+			CodeGeneration
+		</plugin>
+</profile>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri Oct 09 10:11:20 CEST 2020'>
+  <XMI.header>    <XMI.documentation>
+      <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
+      <XMI.exporterVersion>0.35.1(6) revised on $Date: 2012-12-30 14:06:01 +0100 (Sun, 30 Dec 2012) $ </XMI.exporterVersion>
+    </XMI.documentation>
+    <XMI.metamodel xmi.name="UML" xmi.version="1.4"/></XMI.header>
+  <XMI.content>
+    <UML:Model xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000865'
+      name = 'unbenanntesModell' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+      isAbstract = 'false'>
+      <UML:Namespace.ownedElement>
+        <UML:Class xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000866'
+          name = 'SchedulerService' visibility = 'public' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+          <UML:ModelElement.taggedValue>
+            <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000888'
+              isSpecification = 'false'>
+              <UML:TaggedValue.dataValue>@class SchedulerService
+@brief A service for scheduling plans
+
+The SchedulerService provides methods to schedule plans.
+Only one plan can be scheduled simultaneously.
+
+This class will be rewritten, when the jsonrpc module supports signals.</UML:TaggedValue.dataValue>
+              <UML:TaggedValue.type>
+                <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+              </UML:TaggedValue.type>
+            </UML:TaggedValue>
+          </UML:ModelElement.taggedValue>
+          <UML:Classifier.feature>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086C'
+              name = 'startScheduling' visibility = 'public' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false' specification = ''>
+              <UML:ModelElement.stereotype>
+                <UML:Stereotype xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000088C'/>
+              </UML:ModelElement.stereotype>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000087A'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Start scheduling the plan
+@param [in] plan is a QJsonValue representing the plan, that should be scheduled
+@param [in] parent is the pare
+@return A boolean indicating if scheduling was started
+
+Returns false if a plan is already being scheduled</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086D'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:ModelElement.taggedValue>
+                    <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000087E'
+                      isSpecification = 'false'>
+                      <UML:TaggedValue.dataValue></UML:TaggedValue.dataValue>
+                      <UML:TaggedValue.type>
+                        <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                      </UML:TaggedValue.type>
+                    </UML:TaggedValue>
+                  </UML:ModelElement.taggedValue>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086F'
+                  name = 'plan' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000871'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000872'
+              name = 'getProgress' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+              isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+              isAbstract = 'false'>
+              <UML:ModelElement.stereotype>
+                <UML:Stereotype xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000088C'/>
+              </UML:ModelElement.stereotype>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000087F'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Get the progress of scheduling
+@return A double between 0.0 and 1.0 representing the current planning progress
+
+Get the progress of scheduling. If scheduling was successful or failed it returns 1.0</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000873'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000880'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000874'
+              name = 'getResult' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+              isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+              isAbstract = 'false'>
+              <UML:ModelElement.stereotype>
+                <UML:Stereotype xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000088C'/>
+              </UML:ModelElement.stereotype>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000882'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Get the scheduled plan
+@return A QJsonValue containing the scheduled plan, an errormessage or nothing
+
+Returns the result as a JsonValue. If no result exists, a QJsonValue with type QJsonValue::Undefined is returned.
+If no result exists, a QJsonValue with the error message as a string is returned.</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000875'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000881'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Attribute xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000883'
+              name = 'scheduler' visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+              changeability = 'changeable' targetScope = 'instance'>
+              <UML:StructuralFeature.multiplicity>
+                <UML:Multiplicity xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000884'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000885'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:StructuralFeature.multiplicity>
+              <UML:StructuralFeature.type>
+                <UML:Interface xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000899'/>
+              </UML:StructuralFeature.type>
+            </UML:Attribute>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008DD'
+              name = 'SchedulerService' visibility = 'public' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:ModelElement.stereotype>
+                <UML:Stereotype href = 'http://argouml.org/profiles/uml14/default-uml14.xmi#.:000000000000082B'/>
+              </UML:ModelElement.stereotype>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008E1'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Creates a new SchedulerService
+@param parent is the parent of this QObject</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008DE'
+                  name = 'return' isSpecification = 'false' kind = 'return'/>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008DF'
+                  name = 'parent' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.defaultValue>
+                    <UML:Expression xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008E2'
+                      language = 'UML 1.4' body = 'nullptr'/>
+                  </UML:Parameter.defaultValue>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008DB'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Attribute xmi.id = '-64--88--55-65-6ac0d0b9:174bfdb3c9a:-8000:0000000000000B14'
+              name = 'progress' visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+              changeability = 'changeable' targetScope = 'instance'>
+              <UML:StructuralFeature.multiplicity>
+                <UML:Multiplicity xmi.id = '-64--88--55-65-6ac0d0b9:174bfdb3c9a:-8000:0000000000000B15'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '-64--88--55-65-6ac0d0b9:174bfdb3c9a:-8000:0000000000000B16'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:StructuralFeature.multiplicity>
+              <UML:StructuralFeature.type>
+                <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000880'/>
+              </UML:StructuralFeature.type>
+            </UML:Attribute>
+            <UML:Attribute xmi.id = '-64--88--55-65-6ac0d0b9:174bfdb3c9a:-8000:0000000000000B17'
+              name = 'result' visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+              changeability = 'changeable' targetScope = 'instance'>
+              <UML:StructuralFeature.multiplicity>
+                <UML:Multiplicity xmi.id = '-64--88--55-65-6ac0d0b9:174bfdb3c9a:-8000:0000000000000B18'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '-64--88--55-65-6ac0d0b9:174bfdb3c9a:-8000:0000000000000B19'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:StructuralFeature.multiplicity>
+              <UML:StructuralFeature.type>
+                <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000881'/>
+              </UML:StructuralFeature.type>
+            </UML:Attribute>
+          </UML:Classifier.feature>
+        </UML:Class>
+        <UML:Class xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086E'
+          name = 'bool' visibility = 'public' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+        <UML:Class xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000870'
+          name = 'Plan' visibility = 'public' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+        <UML:Class xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000871'
+          name = 'QJsonObject' visibility = 'public' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+        <UML:Class xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000876'
+          name = 'int' visibility = 'public' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+        <UML:TagDefinition xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'
+          name = 'documentation' isSpecification = 'false'>
+          <UML:TagDefinition.multiplicity>
+            <UML:Multiplicity xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000879'>
+              <UML:Multiplicity.range>
+                <UML:MultiplicityRange xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000878'
+                  lower = '0' upper = '0'/>
+              </UML:Multiplicity.range>
+            </UML:Multiplicity>
+          </UML:TagDefinition.multiplicity>
+        </UML:TagDefinition>
+        <UML:Class xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000880'
+          name = 'double' visibility = 'public' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+        <UML:Class xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000881'
+          name = 'QJsonValue' visibility = 'public' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+        <UML:Stereotype xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000088C'
+          name = 'slot' visibility = 'public' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Operation</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Class xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000890'
+          name = 'void' visibility = 'public' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+        <UML:Stereotype xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000891'
+          name = 'signal' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Operation</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Class xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000898'
+          name = 'QSharedPointer&lt;Plan&gt;' visibility = 'public' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+        <UML:Interface xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000899'
+          name = 'Scheduler' visibility = 'public' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false'>
+          <UML:ModelElement.taggedValue>
+            <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008A9'
+              isSpecification = 'false'>
+              <UML:TaggedValue.dataValue>@interface Scheduler
+@brief Schedules a plan
+
+A class implementing Scheduler can schedule plans</UML:TaggedValue.dataValue>
+              <UML:TaggedValue.type>
+                <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+              </UML:TaggedValue.type>
+            </UML:TaggedValue>
+          </UML:ModelElement.taggedValue>
+          <UML:Classifier.feature>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000089D'
+              name = 'startScheduling' visibility = 'public' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008AB'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Start scheduling the plan passed in the constructor
+@return A boolean indicating if scheduling was started
+
+The return value is false if starting the scheduling failed. If there was an error while scheduling, the return value depends on the implementation. If the scheduling started and finished successfully, the return value is always true</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000089E'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000089F'
+              name = 'updateProgress' visibility = 'public' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:ModelElement.stereotype>
+                <UML:Stereotype xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000891'/>
+              </UML:ModelElement.stereotype>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008AC'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief This signal will be emitted, when progress is made
+@param progress is the current progress</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008A0'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000890'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008A1'
+                  name = 'progress' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000880'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008A2'
+              name = 'finishedScheduling' visibility = 'public' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:ModelElement.stereotype>
+                <UML:Stereotype xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000891'/>
+              </UML:ModelElement.stereotype>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008AD'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief This signal will be emitted if the scheduling finished successfully
+@param plan is a pointer to the scheduled plan</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008A3'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000890'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008A4'
+                  name = 'plan' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000898'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008A5'
+              name = 'failedScheduling' visibility = 'public' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:ModelElement.stereotype>
+                <UML:Stereotype xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000891'/>
+              </UML:ModelElement.stereotype>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008AE'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief This signal will be emitted, if scheduling failed
+@param message contains a message with information about the failure</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008A6'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000890'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008A7'
+                  name = 'message' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008CC'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+          </UML:Classifier.feature>
+        </UML:Interface>
+        <UML:Class xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008A8'
+          name = 'Qstring' visibility = 'public' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+        <UML:Class xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008AF'
+          name = 'LegacyScheduler' visibility = 'public' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+          <UML:ModelElement.clientDependency>
+            <UML:Abstraction xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008B1'/>
+          </UML:ModelElement.clientDependency>
+          <UML:ModelElement.taggedValue>
+            <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008B0'
+              isSpecification = 'false'>
+              <UML:TaggedValue.dataValue>@class LegacyScheduler
+@brief A wrapper for the legacy scheduling algorithm
+
+This class provides a scheduler implementation, which uses the legacy sp-automatisch scheduler. It needs a sp-automatisch binary.</UML:TaggedValue.dataValue>
+              <UML:TaggedValue.type>
+                <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+              </UML:TaggedValue.type>
+            </UML:TaggedValue>
+          </UML:ModelElement.taggedValue>
+          <UML:Classifier.feature>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008B3'
+              name = 'LegacyScheduler' visibility = 'public' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:ModelElement.stereotype>
+                <UML:Stereotype href = 'http://argouml.org/profiles/uml14/default-uml14.xmi#.:000000000000082B'/>
+              </UML:ModelElement.stereotype>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008B6'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Creates a new LegacyScheduler, that will schedule a plan
+@param [in] plan will be scheduled
+@param [in] parent is the parent of this QObject
+
+The plan schedule will be added to plan.</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008B4'
+                  name = 'return' isSpecification = 'false' kind = 'return'/>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008B5'
+                  name = 'plan' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000898'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008E3'
+                  name = 'parent' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.defaultValue>
+                    <UML:Expression xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008E4'
+                      language = 'UML 1.4' body = 'nullptr'/>
+                  </UML:Parameter.defaultValue>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008DB'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008B7'
+              name = 'startScheduling' visibility = 'public' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008C5'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Start scheduling the plan passed in the constructor
+@return A boolean indicating if scheduling was started
+
+The return value is false, if scheduling could not be started or failed.</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008B8'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008B9'
+              name = 'updateProgress' visibility = 'public' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:ModelElement.stereotype>
+                <UML:Stereotype xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000891'/>
+              </UML:ModelElement.stereotype>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008C4'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief This signal will be emitted, when progress is made
+@param progress is the current progress</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008BA'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000890'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008BB'
+                  name = 'progress' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000880'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008BC'
+              name = 'finishedScheduling' visibility = 'public' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:ModelElement.stereotype>
+                <UML:Stereotype xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000891'/>
+              </UML:ModelElement.stereotype>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008C3'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief This signal will be emitted if the scheduling finished successfully
+@param plan is a pointer to the scheduled plan</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008BD'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000890'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008BE'
+                  name = 'plan' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000898'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008BF'
+              name = 'failedScheduling' visibility = 'public' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:ModelElement.stereotype>
+                <UML:Stereotype xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000891'/>
+              </UML:ModelElement.stereotype>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008C2'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief This signal will be emitted, if scheduling failed
+@param message contains a message with information about the failure</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008C0'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000890'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008C1'
+                  name = 'message' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008CC'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008C6'
+              name = 'prepareEnvironment' visibility = 'private' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008C7'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008EE'
+              name = 'executeScheduler' visibility = 'private' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008EF'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008F0'
+              name = 'readResults' visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+              isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+              isAbstract = 'false'>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008F1'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Attribute xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008F2'
+              name = 'csvHelper' visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+              changeability = 'changeable' targetScope = 'instance'>
+              <UML:StructuralFeature.multiplicity>
+                <UML:Multiplicity xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008F3'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008F4'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:StructuralFeature.multiplicity>
+              <UML:StructuralFeature.type>
+                <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008C8'/>
+              </UML:StructuralFeature.type>
+            </UML:Attribute>
+            <UML:Attribute xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008F8'
+              name = 'originalPlan' visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+              changeability = 'changeable' targetScope = 'instance'>
+              <UML:StructuralFeature.multiplicity>
+                <UML:Multiplicity xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008F9'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008FA'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:StructuralFeature.multiplicity>
+              <UML:StructuralFeature.type>
+                <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000898'/>
+              </UML:StructuralFeature.type>
+            </UML:Attribute>
+          </UML:Classifier.feature>
+        </UML:Class>
+        <UML:Abstraction xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008B1'
+          isSpecification = 'false'>
+          <UML:ModelElement.stereotype>
+            <UML:Stereotype xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008B2'/>
+          </UML:ModelElement.stereotype>
+          <UML:Dependency.client>
+            <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008AF'/>
+          </UML:Dependency.client>
+          <UML:Dependency.supplier>
+            <UML:Interface xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000899'/>
+          </UML:Dependency.supplier>
+        </UML:Abstraction>
+        <UML:Stereotype xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008B2'
+          name = 'realize' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Abstraction</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Class xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008C8'
+          name = 'PlanCsvHelper' visibility = 'public' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+          <UML:ModelElement.taggedValue>
+            <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008FB'
+              isSpecification = 'false'>
+              <UML:TaggedValue.dataValue>@class PlanCsvHelper
+@brief A helper for converting plans to csv files
+
+A helper for converting plans to the csv files required by sp-automatisch and for converting the resulting files from sp-automatisch to a Plan object.</UML:TaggedValue.dataValue>
+              <UML:TaggedValue.type>
+                <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+              </UML:TaggedValue.type>
+            </UML:TaggedValue>
+          </UML:ModelElement.taggedValue>
+          <UML:Classifier.feature>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008C9'
+              name = 'PlanCsvHelper' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+              isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+              isAbstract = 'false'>
+              <UML:ModelElement.stereotype>
+                <UML:Stereotype href = 'http://argouml.org/profiles/uml14/default-uml14.xmi#.:000000000000082B'/>
+              </UML:ModelElement.stereotype>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008D5'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Creates a PlanCsvHelper for the given path
+@param path is the directory the csv files are located</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008CA'
+                  name = 'return' isSpecification = 'false' kind = 'return'/>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008CB'
+                  name = 'path' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008CC'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008D0'
+              name = 'readPlan' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+              isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+              isAbstract = 'false'>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008E5'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Create a plan from the files in path
+@return The plan generated from the files in path
+
+The generated plan will not contain any scheduling information
+If csv files are missing, a nullptr will be returned</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008D1'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000898'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008D2'
+              name = 'isScheduled' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+              isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+              isAbstract = 'false'>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008E6'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Check if the plan is scheduled
+@return True, if the files that are generated by sp-automatisch exist
+
+These files are checked:
+ - SPA-ERGEBNIS-PP/SPA-planung-pruef.csv
+ - SPA-ERGEBNIS-PP/SPA-zuege-pruef.cs</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008D3'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008D7'
+              name = 'writePlan' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+              isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+              isAbstract = 'false'>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008E7'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Write plan to csv files
+@param [in] plan is the plan, that will be written
+@return True if the plan was written successfully
+
+Writes the plan to csv files.
+If the plan contains scheduling information it will also be written, but not to the groupsExamsResultFile.
+If csv files already exist in the path, everything there will be deleted and new csv files will be written.</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008D8'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008D9'
+                  name = 'plan' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000898'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Attribute xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008E8'
+              name = 'basePath' visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+              changeability = 'changeable' targetScope = 'instance'>
+              <UML:StructuralFeature.multiplicity>
+                <UML:Multiplicity xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008E9'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008EA'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:StructuralFeature.multiplicity>
+              <UML:StructuralFeature.type>
+                <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008CC'/>
+              </UML:StructuralFeature.type>
+            </UML:Attribute>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008FC'
+              name = 'isWritten' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+              isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+              isAbstract = 'false'>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008FE'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Check if the files required by sp-automatisch exist
+@return True, if the files required by sp-automatisch exist
+
+These files are required:
+ - pruef-intervalle.csv
+ - pruefungen.csv
+ - zuege-pruef.csv
+ - zuege-pruef-pref2.csv</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008FD'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008FF'
+              name = 'PlanCsvHelper' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+              isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+              isAbstract = 'false'>
+              <UML:ModelElement.stereotype>
+                <UML:Stereotype href = 'http://argouml.org/profiles/uml14/default-uml14.xmi#.:000000000000082B'/>
+              </UML:ModelElement.stereotype>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000903'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Creates a PlanCsvHelper
+
+Creates a PlanCsvHelper with a temporary directory for the files. The directory will be removed, once this PlanCsvHelper gets destroyed.</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000900'
+                  name = 'return' isSpecification = 'false' kind = 'return'/>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000901'
+              name = 'getPath' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+              isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+              isAbstract = 'false'>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000904'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Get the path of the directory containing the csv files
+@return A QString containing the path</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000902'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008CC'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Attribute xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000905'
+              name = 'temporaryDirectory' visibility = 'private' isSpecification = 'false'
+              ownerScope = 'instance' changeability = 'changeable' targetScope = 'instance'>
+              <UML:StructuralFeature.multiplicity>
+                <UML:Multiplicity xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000906'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000907'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:StructuralFeature.multiplicity>
+              <UML:StructuralFeature.type>
+                <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000908'/>
+              </UML:StructuralFeature.type>
+            </UML:Attribute>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000909'
+              name = 'initializeFilePaths' visibility = 'private' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000090B'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Initialize the QFile objects with the correct paths</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000090A'
+                  name = 'return' isSpecification = 'false' kind = 'return'/>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Attribute xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000090C'
+              name = 'examsIntervalsFile' visibility = 'private' isSpecification = 'false'
+              ownerScope = 'instance' changeability = 'changeable' targetScope = 'instance'>
+              <UML:StructuralFeature.multiplicity>
+                <UML:Multiplicity xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000090D'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000090E'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:StructuralFeature.multiplicity>
+              <UML:StructuralFeature.type>
+                <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000090F'/>
+              </UML:StructuralFeature.type>
+            </UML:Attribute>
+            <UML:Attribute xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000910'
+              name = 'examsFile' visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+              changeability = 'changeable' targetScope = 'instance'>
+              <UML:StructuralFeature.multiplicity>
+                <UML:Multiplicity xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000911'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000912'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:StructuralFeature.multiplicity>
+              <UML:StructuralFeature.type>
+                <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000090F'/>
+              </UML:StructuralFeature.type>
+            </UML:Attribute>
+            <UML:Attribute xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000913'
+              name = 'groupsExamsFile' visibility = 'private' isSpecification = 'false'
+              ownerScope = 'instance' changeability = 'changeable' targetScope = 'instance'>
+              <UML:StructuralFeature.multiplicity>
+                <UML:Multiplicity xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000914'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000915'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:StructuralFeature.multiplicity>
+              <UML:StructuralFeature.type>
+                <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000090F'/>
+              </UML:StructuralFeature.type>
+            </UML:Attribute>
+            <UML:Attribute xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000916'
+              name = 'groupsExamsPrefFile' visibility = 'private' isSpecification = 'false'
+              ownerScope = 'instance' changeability = 'changeable' targetScope = 'instance'>
+              <UML:StructuralFeature.multiplicity>
+                <UML:Multiplicity xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000917'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000918'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:StructuralFeature.multiplicity>
+              <UML:StructuralFeature.type>
+                <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000090F'/>
+              </UML:StructuralFeature.type>
+            </UML:Attribute>
+            <UML:Attribute xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000091A'
+              name = 'planningExamsResultFile' visibility = 'private' isSpecification = 'false'
+              ownerScope = 'instance' changeability = 'changeable' targetScope = 'instance'>
+              <UML:StructuralFeature.multiplicity>
+                <UML:Multiplicity xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000091B'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000091C'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:StructuralFeature.multiplicity>
+              <UML:StructuralFeature.type>
+                <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000090F'/>
+              </UML:StructuralFeature.type>
+            </UML:Attribute>
+            <UML:Attribute xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000091D'
+              name = 'groupsExamsResultFile' visibility = 'private' isSpecification = 'false'
+              ownerScope = 'instance' changeability = 'changeable' targetScope = 'instance'>
+              <UML:StructuralFeature.multiplicity>
+                <UML:Multiplicity xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000091E'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000091F'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:StructuralFeature.multiplicity>
+              <UML:StructuralFeature.type>
+                <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000090F'/>
+              </UML:StructuralFeature.type>
+            </UML:Attribute>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000922'
+              name = 'writeExamsIntervalsFile' visibility = 'private' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000092E'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Write the pruef-intervalle.csv file
+@param [in] plan is the plan, that will be written
+@return True if the the file was written successfully</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000923'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000924'
+                  name = 'plan' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000898'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000925'
+              name = 'writeExamsFile' visibility = 'private' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000092F'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Write the pruefungen.csv file
+@param [in] plan is the plan, that will be written
+@return True if the the file was written successfully</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000926'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000927'
+                  name = 'plan' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000898'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000928'
+              name = 'writeGroupsExamsFile' visibility = 'private' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000930'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Write the zuege-pruef.csv file
+@param [in] plan is the plan, that will be written
+@return True if the the file was written successfully</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000929'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000092A'
+                  name = 'plan' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000898'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000092B'
+              name = 'writeGroupsExamsPrefFile' visibility = 'private' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000931'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Write the zuege-pruef-pref2.csv file
+@param [in] plan is the plan, that will be written
+@return True if the the file was written successfully</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000092C'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000092D'
+                  name = 'plan' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000898'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65-2601153a:174a11b9bdc:-8000:0000000000000B00'
+              name = 'readSchedule' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+              isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+              isAbstract = 'false'>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65-2601153a:174a11b9bdc:-8000:0000000000000B03'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Add the scheduling information from the files to a plan
+@param [in] plan is a pointer to the plan to which the scheduling information will be added
+@return True if succeeded
+
+Every scheduled module, that is read from the csv file will only be scheduled once in plan. Old schedulings for modules contained in the csv file will be removed.</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65-2601153a:174a11b9bdc:-8000:0000000000000B01'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65-2601153a:174a11b9bdc:-8000:0000000000000B02'
+                  name = 'plan' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000898'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65-2601153a:174a11b9bdc:-8000:0000000000000B04'
+              name = 'readExamsIntervalsFile' visibility = 'private' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65-2601153a:174a11b9bdc:-8000:0000000000000B10'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Read the pruef-intervalle.csv file and add the information to plan
+@param plan is the Plan
+@return True if the the file was read successfully
+
+If reading the file fails, plan has to be considered as invalid and get deleted</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65-2601153a:174a11b9bdc:-8000:0000000000000B05'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65-2601153a:174a11b9bdc:-8000:0000000000000B06'
+                  name = 'plan' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000898'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65-2601153a:174a11b9bdc:-8000:0000000000000B07'
+              name = 'readExamsFile' visibility = 'private' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65-2601153a:174a11b9bdc:-8000:0000000000000B11'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Read the pruefungen.csv file and add the information to plan
+@param plan is the Plan
+@return True if the the file was read successfully
+
+If reading the file fails, plan has to be considered as invalid and get deleted</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65-2601153a:174a11b9bdc:-8000:0000000000000B08'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65-2601153a:174a11b9bdc:-8000:0000000000000B09'
+                  name = 'plan' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000898'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65-2601153a:174a11b9bdc:-8000:0000000000000B0A'
+              name = 'readGroupsExamsFile' visibility = 'private' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65-2601153a:174a11b9bdc:-8000:0000000000000B12'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Read the zuege-pruef.csv file and add the information to plan
+@param plan is the Plan
+@return True if the the file was read successfully
+
+If reading the file fails, plan has to be considered as invalid and get deleted</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65-2601153a:174a11b9bdc:-8000:0000000000000B0B'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65-2601153a:174a11b9bdc:-8000:0000000000000B0C'
+                  name = 'plan' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000898'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65-2601153a:174a11b9bdc:-8000:0000000000000B0D'
+              name = 'readGroupsExamsPrefFile' visibility = 'private' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65-2601153a:174a11b9bdc:-8000:0000000000000B13'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Read the  zuege-pruef-pref2.csv file and add the information to plan
+@param plan is the Plan
+@return True if the the file was read successfully
+
+If reading the file fails, plan has to be considered as invalid and get deleted</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65-2601153a:174a11b9bdc:-8000:0000000000000B0E'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65-2601153a:174a11b9bdc:-8000:0000000000000B0F'
+                  name = 'plan' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000898'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+            <UML:Operation xmi.id = '-64--88--55-65--3deb5419:1750c6417c8:-8000:0000000000000B1A'
+              name = 'writePlanningExamsResultFile' visibility = 'private' isSpecification = 'false'
+              ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '-64--88--55-65--3deb5419:1750c6417c8:-8000:0000000000000B1D'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>@brief Write the SPA-ERGEBNIS-PP/SPA-planung-pruef.csv file
+@param [in] plan is the plan, that will be written
+@return True if the the file was written successfully</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000877'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:BehavioralFeature.parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--3deb5419:1750c6417c8:-8000:0000000000000B1B'
+                  name = 'return' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000086E'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '-64--88--55-65--3deb5419:1750c6417c8:-8000:0000000000000B1C'
+                  name = 'plan' isSpecification = 'false' kind = 'in'>
+                  <UML:Parameter.type>
+                    <UML:Class xmi.idref = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000898'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+              </UML:BehavioralFeature.parameter>
+            </UML:Operation>
+          </UML:Classifier.feature>
+        </UML:Class>
+        <UML:Class xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008CC'
+          name = 'QString' visibility = 'public' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+        <UML:Class xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008DB'
+          name = 'QObject*' visibility = 'public' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+        <UML:Class xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000908'
+          name = 'QScopedPointer&lt;QTemporaryDir&gt;' visibility = 'public' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+        <UML:Class xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:000000000000090F'
+          name = 'QFile' visibility = 'public' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+        <UML:Class xmi.id = '-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000919'
+          name = 'QFils' visibility = 'public' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+      </UML:Namespace.ownedElement>
+    </UML:Model>
+  </XMI.content>
+</XMI>
+<pgml description="org.argouml.uml.diagram.static_structure.ui.UMLClassDiagram|-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000865"
+      xmlns:argouml="http://argouml.tigris.org/pgml-extensions"
+      name="Klassendiagramm"
+>
+  <group name="Fig0"
+       description="org.argouml.uml.diagram.static_structure.ui.FigClass[208, 256, 513, 160]pathVisible=false;stereotypeView=0;operationsVisible=true;attributesVisible=true;"
+       href="-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000866"
+       fill="1"
+       fillcolor="white"
+       stroke="1"
+       strokecolor="black"
+  >
+    <private>
+    </private>
+    
+    <rectangle name="Fig0.0"
+      x="208"
+      y="256"
+      width="513"
+      height="160"
+      fill="1"
+      fillcolor="white"
+      stroke="1"
+      strokecolor="black"
+    />
+    <text name="Fig0.1"
+      x="209"
+      y="257"
+      width="511"
+      height="22"
+      fill="0"
+      fillcolor="white"
+      stroke="0"
+      strokecolor="black"
+      textcolor="black"
+      font="Dialog"
+      italic="false"
+      bold="false"
+      textsize="12"
+      justification="Center"
+    >+ SchedulerService</text>
+    <group name="Fig0.2"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[209, 257, 511, 0]"
+         href="-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000866"
+         fill="0"
+         fillcolor="white"
+         stroke="0"
+         strokecolor="black"
+         visibility="0"
+    >
+      <private>
+      </private>
+      
+      <rectangle name="Fig0.2.0"
+        x="209"
+        y="257"
+        width="511"
+        height="0"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+      />
+    </group>
+    <rectangle name="Fig0.3"
+      x="208"
+      y="279"
+      width="513"
+      height="1"
+      fill="1"
+      fillcolor="black"
+      stroke="1"
+      strokecolor="black"
+    />
+    <group name="Fig0.4"
+         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[209, 280, 511, 59]"
+         href="-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000866"
+         fill="0"
+         fillcolor="white"
+         stroke="0"
+         strokecolor="black"
+    >
+      <private>
+      </private>
+      
+      <rectangle name="Fig0.4.0"
+        x="209"
+        y="280"
+        width="511"
+        height="59"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+      />
+      <text name="Fig0.4.1"
+        x="209"
+        y="280"
+        width="511"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-scheduler : Scheduler</text>
+      <text name="Fig0.4.2"
+        x="209"
+        y="296"
+        width="511"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-progress : double</text>
+      <text name="Fig0.4.3"
+        x="209"
+        y="312"
+        width="511"
+        height="22"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-result : QJsonValue</text>
+    </group>
+    <rectangle name="Fig0.5"
+      x="208"
+      y="339"
+      width="513"
+      height="1"
+      fill="1"
+      fillcolor="black"
+      stroke="1"
+      strokecolor="black"
+    />
+    <group name="Fig0.6"
+         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[209, 340, 511, 75]"
+         href="-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000866"
+         fill="0"
+         fillcolor="white"
+         stroke="0"
+         strokecolor="black"
+    >
+      <private>
+      </private>
+      
+      <rectangle name="Fig0.6.0"
+        x="209"
+        y="340"
+        width="511"
+        height="75"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+      />
+      <text name="Fig0.6.1"
+        x="209"
+        y="340"
+        width="511"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >&lt;&lt;slot&gt;&gt; +startScheduling(plan : QJsonObject) : bool</text>
+      <text name="Fig0.6.2"
+        x="209"
+        y="356"
+        width="511"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >&lt;&lt;slot&gt;&gt; +getProgress() : double</text>
+      <text name="Fig0.6.3"
+        x="209"
+        y="372"
+        width="511"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >&lt;&lt;slot&gt;&gt; +getResult() : QJsonValue</text>
+      <text name="Fig0.6.4"
+        x="209"
+        y="388"
+        width="511"
+        height="22"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >&lt;&lt;create&gt;&gt; +SchedulerService(parent : QObject* = nullptr)</text>
+    </group>
+  </group>
+  <group name="Fig1"
+       description="org.argouml.uml.diagram.static_structure.ui.FigInterface[768, 136, 472, 152]pathVisible=false;stereotypeView=0;operationsVisible=true;operationsVisible=true"
+       href="-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000899"
+       fill="1"
+       fillcolor="white"
+       stroke="1"
+       strokecolor="black"
+  >
+    <private>
+    </private>
+    
+    <rectangle name="Fig1.0"
+      x="768"
+      y="136"
+      width="472"
+      height="152"
+      fill="1"
+      fillcolor="white"
+      stroke="1"
+      strokecolor="black"
+    />
+    <text name="Fig1.1"
+      x="769"
+      y="137"
+      width="470"
+      height="41"
+      fill="0"
+      fillcolor="white"
+      stroke="0"
+      strokecolor="black"
+      textcolor="black"
+      font="Dialog"
+      italic="false"
+      bold="false"
+      textsize="12"
+      justification="Center"
+    >+ Scheduler</text>
+    <group name="Fig1.2"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[769, 137, 470, 19]"
+         href="-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000899"
+         fill="0"
+         fillcolor="white"
+         stroke="0"
+         strokecolor="black"
+    >
+      <private>
+      </private>
+      
+      <rectangle name="Fig1.2.0"
+        x="769"
+        y="137"
+        width="470"
+        height="19"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+      />
+      <text name="Fig1.2.1"
+        x="769"
+        y="137"
+        width="470"
+        height="17"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Center"
+      >&lt;&lt;interface&gt;&gt;</text>
+    </group>
+    <rectangle name="Fig1.3"
+      x="768"
+      y="178"
+      width="472"
+      height="1"
+      fill="1"
+      fillcolor="black"
+      stroke="1"
+      strokecolor="black"
+    />
+    <group name="Fig1.4"
+         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[769, 179, 470, 108]"
+         href="-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000899"
+         fill="0"
+         fillcolor="white"
+         stroke="0"
+         strokecolor="black"
+    >
+      <private>
+      </private>
+      
+      <rectangle name="Fig1.4.0"
+        x="769"
+        y="179"
+        width="470"
+        height="108"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+      />
+      <text name="Fig1.4.1"
+        x="769"
+        y="179"
+        width="470"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >+startScheduling() : bool</text>
+      <text name="Fig1.4.2"
+        x="769"
+        y="195"
+        width="470"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >&lt;&lt;signal&gt;&gt; +updateProgress(progress : double) : void</text>
+      <text name="Fig1.4.3"
+        x="769"
+        y="211"
+        width="470"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >&lt;&lt;signal&gt;&gt; +finishedScheduling(plan : QSharedPointer&lt;Plan&gt;) : void</text>
+      <text name="Fig1.4.4"
+        x="769"
+        y="227"
+        width="470"
+        height="22"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >&lt;&lt;signal&gt;&gt; +failedScheduling(message : QString) : void</text>
+    </group>
+  </group>
+  <group name="Fig2"
+       description="org.argouml.uml.diagram.static_structure.ui.FigClass[744, 368, 584, 288]pathVisible=false;stereotypeView=0;operationsVisible=true;attributesVisible=true;"
+       href="-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008AF"
+       fill="1"
+       fillcolor="white"
+       stroke="1"
+       strokecolor="black"
+  >
+    <private>
+    </private>
+    
+    <rectangle name="Fig2.0"
+      x="744"
+      y="368"
+      width="584"
+      height="288"
+      fill="1"
+      fillcolor="white"
+      stroke="1"
+      strokecolor="black"
+    />
+    <text name="Fig2.1"
+      x="745"
+      y="369"
+      width="582"
+      height="22"
+      fill="0"
+      fillcolor="white"
+      stroke="0"
+      strokecolor="black"
+      textcolor="black"
+      font="Dialog"
+      italic="false"
+      bold="false"
+      textsize="12"
+      justification="Center"
+    >+ LegacyScheduler</text>
+    <group name="Fig2.2"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[745, 369, 582, 0]"
+         href="-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008AF"
+         fill="0"
+         fillcolor="white"
+         stroke="0"
+         strokecolor="black"
+         visibility="0"
+    >
+      <private>
+      </private>
+      
+      <rectangle name="Fig2.2.0"
+        x="745"
+        y="369"
+        width="582"
+        height="0"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+      />
+    </group>
+    <rectangle name="Fig2.3"
+      x="744"
+      y="391"
+      width="584"
+      height="1"
+      fill="1"
+      fillcolor="black"
+      stroke="1"
+      strokecolor="black"
+    />
+    <group name="Fig2.4"
+         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[745, 392, 582, 83]"
+         href="-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008AF"
+         fill="0"
+         fillcolor="white"
+         stroke="0"
+         strokecolor="black"
+    >
+      <private>
+      </private>
+      
+      <rectangle name="Fig2.4.0"
+        x="745"
+        y="392"
+        width="582"
+        height="83"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+      />
+      <text name="Fig2.4.1"
+        x="745"
+        y="392"
+        width="582"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-csvHelper : PlanCsvHelper</text>
+      <text name="Fig2.4.2"
+        x="745"
+        y="408"
+        width="582"
+        height="22"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-originalPlan : QSharedPointer&lt;Plan&gt;</text>
+    </group>
+    <rectangle name="Fig2.5"
+      x="744"
+      y="475"
+      width="584"
+      height="1"
+      fill="1"
+      fillcolor="black"
+      stroke="1"
+      strokecolor="black"
+    />
+    <group name="Fig2.6"
+         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[745, 476, 582, 179]"
+         href="-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008AF"
+         fill="0"
+         fillcolor="white"
+         stroke="0"
+         strokecolor="black"
+    >
+      <private>
+      </private>
+      
+      <rectangle name="Fig2.6.0"
+        x="745"
+        y="476"
+        width="582"
+        height="179"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+      />
+      <text name="Fig2.6.1"
+        x="745"
+        y="476"
+        width="582"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >&lt;&lt;create&gt;&gt; +LegacyScheduler(plan : QSharedPointer&lt;Plan&gt;,parent : QObject* = nullptr)</text>
+      <text name="Fig2.6.2"
+        x="745"
+        y="492"
+        width="582"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >+startScheduling() : bool</text>
+      <text name="Fig2.6.3"
+        x="745"
+        y="508"
+        width="582"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >&lt;&lt;signal&gt;&gt; +updateProgress(progress : double) : void</text>
+      <text name="Fig2.6.4"
+        x="745"
+        y="524"
+        width="582"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >&lt;&lt;signal&gt;&gt; +finishedScheduling(plan : QSharedPointer&lt;Plan&gt;) : void</text>
+      <text name="Fig2.6.5"
+        x="745"
+        y="540"
+        width="582"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >&lt;&lt;signal&gt;&gt; +failedScheduling(message : QString) : void</text>
+      <text name="Fig2.6.6"
+        x="745"
+        y="556"
+        width="582"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-prepareEnvironment() : bool</text>
+      <text name="Fig2.6.7"
+        x="745"
+        y="572"
+        width="582"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-executeScheduler() : bool</text>
+      <text name="Fig2.6.8"
+        x="745"
+        y="588"
+        width="582"
+        height="22"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-readResults() : bool</text>
+    </group>
+  </group>
+  <group name="Fig3"
+       description="org.argouml.uml.diagram.ui.FigAbstraction"
+       href="-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008B1"
+       stroke="1"
+       strokecolor="black"
+  >
+    <private>
+      sourcePortFig="Fig2.0"
+      destPortFig="Fig1.0"
+      sourceFigNode="Fig2"
+      destFigNode="Fig1"
+      <argouml:pathitem figname="Fig3.1"
+                        classname="org.argouml.uml.diagram.ui.PathItemPlacement"
+                        figclassname="org.argouml.uml.diagram.ui.FigTextGroup"
+                        ownerhref="-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008B1"
+                        angle="270.0"
+                        offset="25" />
+    </private>
+    <path name="Fig3.0"
+      description="org.argouml.gefext.ArgoFigPoly"
+      fill="0"
+      fillcolor="white"
+      stroke="1"
+      strokecolor="black"
+    >
+      <moveto x="840"
+              y="368" />
+      <lineto x="840"
+              y="287" />
+    </path>
+  </group>
+  <group name="Fig4"
+       description="org.argouml.uml.diagram.static_structure.ui.FigClass[1456, 128, 520, 560]pathVisible=false;stereotypeView=0;operationsVisible=true;attributesVisible=true;"
+       href="-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008C8"
+       fill="1"
+       fillcolor="white"
+       stroke="1"
+       strokecolor="black"
+  >
+    <private>
+    </private>
+    
+    <rectangle name="Fig4.0"
+      x="1456"
+      y="128"
+      width="520"
+      height="560"
+      fill="1"
+      fillcolor="white"
+      stroke="1"
+      strokecolor="black"
+    />
+    <text name="Fig4.1"
+      x="1457"
+      y="129"
+      width="518"
+      height="22"
+      fill="0"
+      fillcolor="white"
+      stroke="0"
+      strokecolor="black"
+      textcolor="black"
+      font="Dialog"
+      italic="false"
+      bold="false"
+      textsize="12"
+      justification="Center"
+    >+ PlanCsvHelper</text>
+    <group name="Fig4.2"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[1457, 129, 518, 0]"
+         href="-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008C8"
+         fill="0"
+         fillcolor="white"
+         stroke="0"
+         strokecolor="black"
+         visibility="0"
+    >
+      <private>
+      </private>
+      
+      <rectangle name="Fig4.2.0"
+        x="1457"
+        y="129"
+        width="518"
+        height="0"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+      />
+    </group>
+    <rectangle name="Fig4.3"
+      x="1456"
+      y="151"
+      width="520"
+      height="1"
+      fill="1"
+      fillcolor="black"
+      stroke="1"
+      strokecolor="black"
+    />
+    <group name="Fig4.4"
+         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[1457, 152, 518, 187]"
+         href="-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008C8"
+         fill="0"
+         fillcolor="white"
+         stroke="0"
+         strokecolor="black"
+    >
+      <private>
+      </private>
+      
+      <rectangle name="Fig4.4.0"
+        x="1457"
+        y="152"
+        width="518"
+        height="187"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+      />
+      <text name="Fig4.4.1"
+        x="1457"
+        y="152"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-basePath : QString</text>
+      <text name="Fig4.4.2"
+        x="1457"
+        y="168"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-temporaryDirectory : QScopedPointer&lt;QTemporaryDir&gt;</text>
+      <text name="Fig4.4.3"
+        x="1457"
+        y="184"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-examsIntervalsFile : QFile</text>
+      <text name="Fig4.4.4"
+        x="1457"
+        y="200"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-examsFile : QFile</text>
+      <text name="Fig4.4.5"
+        x="1457"
+        y="216"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-groupsExamsFile : QFile</text>
+      <text name="Fig4.4.6"
+        x="1457"
+        y="232"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-groupsExamsPrefFile : QFile</text>
+      <text name="Fig4.4.7"
+        x="1457"
+        y="248"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-planningExamsResultFile : QFile</text>
+      <text name="Fig4.4.8"
+        x="1457"
+        y="264"
+        width="518"
+        height="22"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-groupsExamsResultFile : QFile</text>
+    </group>
+    <rectangle name="Fig4.5"
+      x="1456"
+      y="339"
+      width="520"
+      height="1"
+      fill="1"
+      fillcolor="black"
+      stroke="1"
+      strokecolor="black"
+    />
+    <group name="Fig4.6"
+         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[1457, 340, 518, 347]"
+         href="-64--88--55-65--65e71df1:174965499cf:-8000:00000000000008C8"
+         fill="0"
+         fillcolor="white"
+         stroke="0"
+         strokecolor="black"
+    >
+      <private>
+      </private>
+      
+      <rectangle name="Fig4.6.0"
+        x="1457"
+        y="340"
+        width="518"
+        height="347"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+      />
+      <text name="Fig4.6.1"
+        x="1457"
+        y="340"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >&lt;&lt;create&gt;&gt; +PlanCsvHelper(path : QString)</text>
+      <text name="Fig4.6.2"
+        x="1457"
+        y="356"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >+readPlan() : QSharedPointer&lt;Plan&gt;</text>
+      <text name="Fig4.6.3"
+        x="1457"
+        y="372"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >+isScheduled() : bool</text>
+      <text name="Fig4.6.4"
+        x="1457"
+        y="388"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >+writePlan(plan : QSharedPointer&lt;Plan&gt;) : bool</text>
+      <text name="Fig4.6.5"
+        x="1457"
+        y="404"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >+isWritten() : bool</text>
+      <text name="Fig4.6.6"
+        x="1457"
+        y="420"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >&lt;&lt;create&gt;&gt; +PlanCsvHelper()</text>
+      <text name="Fig4.6.7"
+        x="1457"
+        y="436"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >+getPath() : QString</text>
+      <text name="Fig4.6.8"
+        x="1457"
+        y="452"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-initializeFilePaths()</text>
+      <text name="Fig4.6.9"
+        x="1457"
+        y="468"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-writeExamsIntervalsFile(plan : QSharedPointer&lt;Plan&gt;) : bool</text>
+      <text name="Fig4.6.10"
+        x="1457"
+        y="484"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-writeExamsFile(plan : QSharedPointer&lt;Plan&gt;) : bool</text>
+      <text name="Fig4.6.11"
+        x="1457"
+        y="500"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-writeGroupsExamsFile(plan : QSharedPointer&lt;Plan&gt;) : bool</text>
+      <text name="Fig4.6.12"
+        x="1457"
+        y="516"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-writeGroupsExamsPrefFile(plan : QSharedPointer&lt;Plan&gt;) : bool</text>
+      <text name="Fig4.6.13"
+        x="1457"
+        y="532"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >+readSchedule(plan : QSharedPointer&lt;Plan&gt;) : bool</text>
+      <text name="Fig4.6.14"
+        x="1457"
+        y="548"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-readExamsIntervalsFile(plan : QSharedPointer&lt;Plan&gt;) : bool</text>
+      <text name="Fig4.6.15"
+        x="1457"
+        y="564"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-readExamsFile(plan : QSharedPointer&lt;Plan&gt;) : bool</text>
+      <text name="Fig4.6.16"
+        x="1457"
+        y="580"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-readGroupsExamsFile(plan : QSharedPointer&lt;Plan&gt;) : bool</text>
+      <text name="Fig4.6.17"
+        x="1457"
+        y="596"
+        width="518"
+        height="16"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-readGroupsExamsPrefFile(plan : QSharedPointer&lt;Plan&gt;) : bool</text>
+      <text name="Fig4.6.18"
+        x="1457"
+        y="612"
+        width="518"
+        height="22"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >-writePlanningExamsResultFile(plan : QSharedPointer&lt;Plan&gt;) : bool</text>
+    </group>
+  </group>
+</pgml>
+<pgml description="org.argouml.uml.diagram.use_case.ui.UMLUseCaseDiagram|-64--88--55-65--65e71df1:174965499cf:-8000:0000000000000865"
+      xmlns:argouml="http://argouml.tigris.org/pgml-extensions"
+      name="Anwendungsfalldiagramm"
+>
+</pgml>
+<todo>
+<todolist>
+</todolist>
+<resolvedcritics>
+</resolvedcritics>
+</todo>
+</uml>
