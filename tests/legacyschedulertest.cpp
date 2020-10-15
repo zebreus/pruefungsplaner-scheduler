@@ -3,6 +3,7 @@
 
 #include <gmock/gmock-matchers.h>
 #include <gtest/gtest.h>
+#include <testdatahelper.h>
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -12,7 +13,6 @@
 #include <QString>
 #include "legacyscheduler.h"
 #include "plan.h"
-#include <testdatahelper.h>
 
 using namespace testing;
 
@@ -42,9 +42,9 @@ TEST(legacySchedulerTests, startSchedulingAddsScheduleToPlanOnSuccess) {
   LegacyScheduler scheduler(plan);
   ASSERT_TRUE(scheduler.startScheduling());
   bool unscheduledModule = false;
-  for (auto module : plan->modules) {
+  for (auto module : plan->getModules()) {
     if (module->getOrigin() != "EIT") {
-      for (auto week : plan->weeks) {
+      for (auto week : plan->getWeeks()) {
         for (auto day : week->getDays()) {
           for (auto timeslot : day->getTimeslots()) {
             for (auto scheduledModule : timeslot->getModules()) {
@@ -170,12 +170,14 @@ TEST(legacySchedulerTests, startSchedulingEmitsFullProgressAfterSuccess) {
 TEST(legacySchedulerTests, startSchedulingRemovesOldScheduledModulesFromPlan) {
   QSharedPointer<Plan> plan = getValidPlan();
   // Preschedule a module twice, so at least one of them gets removed
-  ASSERT_GE(plan->weeks.size(), 1);
-  ASSERT_GE(plan->weeks[0]->getDays().size(), 1);
-  ASSERT_GE(plan->weeks[0]->getDays()[0]->getTimeslots().size(), 2);
-  ASSERT_GE(plan->modules.size(), 1);
-  plan->weeks[0]->getDays()[0]->getTimeslots()[0]->addModule(plan->modules[0]);
-  plan->weeks[0]->getDays()[0]->getTimeslots()[1]->addModule(plan->modules[0]);
+  ASSERT_GE(plan->getWeeks().size(), 1);
+  ASSERT_GE(plan->getWeeks()[0]->getDays().size(), 1);
+  ASSERT_GE(plan->getWeeks()[0]->getDays()[0]->getTimeslots().size(), 2);
+  ASSERT_GE(plan->getModules().size(), 1);
+  plan->getWeeks()[0]->getDays()[0]->getTimeslots()[0]->addModule(
+      plan->getModules()[0]);
+  plan->getWeeks()[0]->getDays()[0]->getTimeslots()[1]->addModule(
+      plan->getModules()[0]);
 
   LegacyScheduler scheduler(plan);
   bool emittedFinished = false;
@@ -189,10 +191,15 @@ TEST(legacySchedulerTests, startSchedulingRemovesOldScheduledModulesFromPlan) {
     QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
   }
 
-  EXPECT_FALSE(
-      plan->weeks[0]->getDays()[0]->getTimeslots()[0]->getModules().contains(
-          plan->modules[0]) &&
-      plan->weeks[0]->getDays()[0]->getTimeslots()[1]->getModules().contains(
-          plan->modules[0]));
+  EXPECT_FALSE(plan->getWeeks()[0]
+                   ->getDays()[0]
+                   ->getTimeslots()[0]
+                   ->getModules()
+                   .contains(plan->getModules()[0]) &&
+               plan->getWeeks()[0]
+                   ->getDays()[0]
+                   ->getTimeslots()[1]
+                   ->getModules()
+                   .contains(plan->getModules()[0]));
 }
 #endif
