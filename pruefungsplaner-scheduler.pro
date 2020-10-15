@@ -14,7 +14,6 @@ LIBS += -lcrypto
 SOURCES += \
         src/main.cpp \
         src/legacyscheduler.cpp \
-        src/plancsvhelper.cpp \
         src/schedulerservice.cpp
 
 # Default rules for deployment.
@@ -24,7 +23,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     src/legacyscheduler.h \
-    src/plancsvhelper.h \
     src/scheduler.h \
     src/schedulerservice.h
 
@@ -42,11 +40,8 @@ test{
 
     SOURCES -= src/main.cpp
     SOURCES += tests/qthelper.cpp \
-            tests/plancsvhelpertest.cpp \
             tests/legacyschedulertest.cpp \
-            tests/schedulerservicetest.cpp \
-            tests/testdatatest.cpp
-    HEADERS += tests/testdatahelper.h
+            tests/schedulerservicetest.cpp
 }
 else{
     message(Building app)

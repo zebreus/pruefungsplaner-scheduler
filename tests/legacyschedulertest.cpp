@@ -12,7 +12,7 @@
 #include <QString>
 #include "legacyscheduler.h"
 #include "plan.h"
-#include "testdatahelper.h"
+#include <testdatahelper.h>
 
 using namespace testing;
 
