@@ -35,11 +35,36 @@ bool LegacyScheduler::prepareEnvironment() {
 }
 
 bool LegacyScheduler::executeScheduler() {
-  int exitCode = system(
-      QString("echo -ne jn | ./SPA-algorithmus -p " + workingDirectory.path() + " -PP > /dev/null 2>&1").toUtf8().constData());
+  QFile logfile(workingDirectory.path() + "/scheduler.log");
+  int exitCode = system(QString("echo -ne jn | ./SPA-algorithmus -p " +
+                                workingDirectory.path() + " -PP > " +
+                                logfile.fileName() + " 2>&1 ")
+                            .toUtf8()
+                            .constData());
+  // Add -t 16 for 16 threads
+  // Use this for planning with soft constraints (Execution takes ~1 hour)
+  // int exitCode = system(QString("echo -ne jjn | ./SPA-algorithmus -p " +
+  // workingDirectory.path() + " -PP").toUtf8().constData());
   if (exitCode == 0) {
     return true;
   } else {
+    // Try to detect a errormessage in the logfile
+    if (logfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+      QTextStream fileStream(&logfile);
+      QString errormessage;
+      while (!fileStream.atEnd()) {
+        QString line = fileStream.readLine();
+        if (line.startsWith("FEHLER")) {
+          errormessage = line;
+          break;
+        }
+      }
+      logfile.close();
+      if (errormessage != "") {
+        emit failedScheduling(errormessage);
+        return false;
+      }
+    }
     emit failedScheduling("Failed to execute SPA-algorithmus");
     return false;
   }
