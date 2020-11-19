@@ -1,12 +1,12 @@
 [submodule "libs/pruefungsplaner-datamodel"]
 	path = libs/pruefungsplaner-datamodel
-	url = git@github.com:Zebreus/pruefungsplaner-datamodel.git
+	url = https://github.com/Zebreus/pruefungsplaner-datamodel.git
 [submodule "libs/qt-jsonrpc-server"]
 	path = libs/qt-jsonrpc-server
-	url = git@github.com:Zebreus/qt-jsonrpc-server.git
+	url = https://github.com/Zebreus/qt-jsonrpc-server.git
 [submodule "libs/security-provider"]
 	path = libs/security-provider
-	url = git@github.com:Zebreus/securityProvider.git
+	url = https://github.com/Zebreus/securityProvider.git
 [submodule "libs/jwt-cpp"]
 	path = libs/jwt-cpp
-	url = git@github.com:Zebreus/jwt-cpp.git
+	url = https://github.com/Zebreus/jwt-cpp.git
