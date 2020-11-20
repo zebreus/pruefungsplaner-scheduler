@@ -1,0 +1,16 @@
+---
+platform: linux
+
+image_resource:
+  type: registry-image
+  source:
+    repository: madmanfred/qt5-builder
+    tag: latest
+
+inputs:
+  - name: scheduler-tests
+    optional: false
+
+run:
+  path: "./pruefungsplaner-scheduler-tests"
+  dire: ./scheduler-tests
