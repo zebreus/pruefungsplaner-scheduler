@@ -26,13 +26,6 @@ HEADERS += \
     src/scheduler.h \
     src/schedulerservice.h
 
-# Add algorithm binary to destdir
-QMAKE_EXTRA_TARGETS += algorithmBinary
-algorithmBinary.target = $$DESTDIR/SPA-algorithmus
-algorithmBinary.depends = ./SPA-algorithmus
-algorithmBinary.commands += install -Dm 755 $$algorithm.depends $$algorithm.target
-PRE_TARGETDEPS += $$algorithmBinary.target
-
 test{
     message(Building tests)
     include(gtest_dependency.pri)

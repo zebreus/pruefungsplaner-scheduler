@@ -26,4 +26,5 @@ run:
    - |
      qmake pruefungsplaner-scheduler.pro QMAKE_CXXFLAGS_RELEASE="'"-O${optimization_level}"'" QMAKE_LFLAGS_RELEASE="'"-O${optimization_level}"'" DESTDIR=../built-scheduler
      make -j ${make_threads}
+     install -Dm 755 SPA-algorithmus ../pruefungsplaner-scheduler/SPA-algorithmus
   dir: ./pruefungsplaner-scheduler
