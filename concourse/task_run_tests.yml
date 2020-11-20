@@ -13,4 +13,4 @@ inputs:
 
 run:
   path: "./pruefungsplaner-scheduler-tests"
-  dire: ./scheduler-tests
+  dir: ./scheduler-tests
