@@ -1,0 +1,29 @@
+---
+platform: linux
+
+image_resource:
+  type: registry-image
+  source:
+    repository: madmanfred/qt5-builder
+    tag: latest
+
+inputs:
+  - name: pruefungsplaner-scheduler
+    path: pruefungsplaner-scheduler
+    optional: false
+
+params:
+  optimization_level: 0
+  make_threads: 8
+
+run:
+  path: "/bin/sh"
+  args:
+   - -c
+   - |
+     set -eux
+     TEMP_DIR=$(mktemp -d)
+     qmake pruefungsplaner-scheduler.pro CONFIG+=test QMAKE_CXXFLAGS_RELEASE="'"-O${optimization_level}"'" QMAKE_LFLAGS_RELEASE="'"-O${optimization_level}"'"
+     make -j ${make_threads}
+     ./pruefungsplaner-scheduler-tests
+  dir: ./pruefungsplaner-scheduler
