@@ -5,7 +5,7 @@ CONFIG += c++14 console
 CONFIG -= app_bundle
 
 include($$PWD/libs/pruefungsplaner-datamodel/pruefungsplaner-datamodel.pri)
-include($$PWD/libs/security-provider/client/client.pri)
+include($$PWD/libs/pruefungsplaner-auth/client/client.pri)
 include($$PWD/libs/qt-jsonrpc-server/qt-jsonrpc-server.pri)
 INCLUDEPATH += $$PWD/libs/jwt-cpp/include
 INCLUDEPATH += $$PWD/libs/cpptoml/include

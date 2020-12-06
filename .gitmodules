@@ -5,7 +5,7 @@
 	path = libs/qt-jsonrpc-server
 	url = https://github.com/Zebreus/qt-jsonrpc-server.git
 [submodule "libs/security-provider"]
-	path = libs/security-provider
+	path = libs/pruefungsplaner-auth
 	url = https://github.com/Zebreus/securityProvider.git
 [submodule "libs/jwt-cpp"]
 	path = libs/jwt-cpp
