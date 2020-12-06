@@ -8,6 +8,7 @@ include($$PWD/libs/pruefungsplaner-datamodel/pruefungsplaner-datamodel.pri)
 include($$PWD/libs/security-provider/client/client.pri)
 include($$PWD/libs/qt-jsonrpc-server/qt-jsonrpc-server.pri)
 INCLUDEPATH += $$PWD/libs/jwt-cpp/include
+INCLUDEPATH += $$PWD/libs/cpptoml/include
 
 LIBS += -lcrypto
 

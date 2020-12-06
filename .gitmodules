@@ -10,3 +10,6 @@
 [submodule "libs/jwt-cpp"]
 	path = libs/jwt-cpp
 	url = https://github.com/Zebreus/jwt-cpp.git
+[submodule "libs/cpptoml"]
+	path = libs/cpptoml
+	url = https://github.com/skystrife/cpptoml.git
