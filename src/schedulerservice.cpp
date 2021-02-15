@@ -1,7 +1,10 @@
 #include "schedulerservice.h"
 
-SchedulerService::SchedulerService(QObject* parent)
+SchedulerService::SchedulerService(
+    const QSharedPointer<Configuration> configuration,
+    QObject* parent)
     : QObject(parent),
+      configuration(configuration),
       scheduler(nullptr),
       progress(0.0),
       result(QJsonValue::Undefined) {}
@@ -14,7 +17,21 @@ bool SchedulerService::startScheduling(QJsonObject plan) {
   QSharedPointer<Plan> planPointer(new Plan());
   planPointer->fromJsonObject(plan);
 
-  scheduler.reset(new LegacyScheduler(planPointer));
+  QString schedulingAlgorithm = configuration->getDefaultSchedulingAlgorithm();
+  if (schedulingAlgorithm.startsWith("legacy")) {
+    LegacyScheduler::SchedulingMode legacySchedulerMode;
+    if (schedulingAlgorithm == "legacy-fast") {
+      legacySchedulerMode = LegacyScheduler::Fast;
+    } else {
+      legacySchedulerMode = LegacyScheduler::Good;
+    }
+    scheduler.reset(new LegacyScheduler(
+        planPointer, configuration->getLegacySchedulerAlgorithmBinary(),
+        configuration->getLegacySchedulerPrintLog(), legacySchedulerMode));
+  } else {
+    return false;
+  }
+
   QObject::connect(
       (LegacyScheduler*)scheduler.data(), &LegacyScheduler::updateProgress,
       [this](double updatedProgress) { progress = updatedProgress; });

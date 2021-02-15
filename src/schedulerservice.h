@@ -6,6 +6,7 @@
 #include "legacyscheduler.h"
 #include "plan.h"
 #include "scheduler.h"
+#include "configuration.h"
 
 /**
  *  @class SchedulerService
@@ -20,6 +21,7 @@ class SchedulerService : public QObject {
   Q_OBJECT
 
  private:
+  QSharedPointer<Configuration> configuration;
   QScopedPointer<Scheduler> scheduler;
   double progress;
   QJsonValue result;
@@ -27,9 +29,10 @@ class SchedulerService : public QObject {
  public:
   /**
    *  @brief Creates a new SchedulerService
+   *  @param [in] configuration is the Configuration for this service
    *  @param parent is the parent of this QObject
    */
-  explicit SchedulerService(QObject* parent = nullptr);
+  explicit SchedulerService(const QSharedPointer<Configuration> configuration, QObject* parent = nullptr);
 
  public slots:
 

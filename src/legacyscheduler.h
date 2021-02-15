@@ -6,7 +6,6 @@
 #include <QString>
 #include "plancsvhelper.h"
 #include "scheduler.h"
-
 /**
  *  @class LegacyScheduler
  *  @brief A wrapper for the legacy scheduling algorithm
@@ -17,18 +16,33 @@
 class LegacyScheduler : public QObject, public Scheduler {
   Q_OBJECT
 
+ public:
+  /**
+   * @brief The SchedulingModeFlag enum contains the different modes, this
+   * scheduler can use
+   */
+  enum SchedulingModeFlag { Fast = 1, Good = 2 };
+  Q_DECLARE_FLAGS(SchedulingMode, SchedulingModeFlag)
+
  private:
   QTemporaryDir workingDirectory;
   PlanCsvHelper csvHelper;
   QSharedPointer<Plan> originalPlan;
+  QString algorithmBinary;
+  bool printLog;
+  SchedulingMode mode;
 
  public:
   /**
    *  @brief Creates a new LegacyScheduler, that will schedule a plan
    *  @param [in] plan will be scheduled
+   *  @param [in] configuration is the configuration for this scheduler
    *  @param [in] parent is the parent of this QObject
    */
   explicit LegacyScheduler(QSharedPointer<Plan> plan,
+                           const QString& algorithmBinary,
+                           const bool printLog = false,
+                           const SchedulingMode mode = Fast,
                            QObject* parent = nullptr);
 
   /**
