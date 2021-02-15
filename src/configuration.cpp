@@ -394,6 +394,8 @@ void Configuration::checkConfiguration()
         failConfiguration("The address " + address + " seems to be invalid.");
     }
 
+    //TODO Uncomment, when implemented
+    /*
     if(publicKey == ""){
         failConfiguration("No public key specified.");
     }
@@ -408,9 +410,9 @@ void Configuration::checkConfiguration()
 
     if(requiredClaims.size() == 0){
         warnConfiguration("You specified no required claims.");
-    }
+    }*/
 
-    if(defaultSchedulingAlgorithm != "legacy-fast" || defaultSchedulingAlgorithm != "legacy-good" ){
+    if(defaultSchedulingAlgorithm != "legacy-fast" && defaultSchedulingAlgorithm != "legacy-good" ){
         failConfiguration("Legacy scheduler print log option not specified");
     }
 
