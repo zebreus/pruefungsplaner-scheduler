@@ -36,7 +36,7 @@ bool LegacyScheduler::prepareEnvironment() {
 
 bool LegacyScheduler::executeScheduler() {
   QFile logfile(workingDirectory.path() + "/scheduler.log");
-  int exitCode = system(QString("echo -ne jn | ./SPA-algorithmus -p " +
+  int exitCode = system(QString("echo -ne jn | SPA-algorithmus -p " +
                                 workingDirectory.path() + " -PP > " +
                                 logfile.fileName() + " 2>&1 ")
                             .toUtf8()

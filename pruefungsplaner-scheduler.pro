@@ -17,11 +17,6 @@ SOURCES += \
         src/legacyscheduler.cpp \
         src/schedulerservice.cpp
 
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
-
 HEADERS += \
     src/legacyscheduler.h \
     src/scheduler.h \
@@ -49,3 +44,34 @@ else{
     TEMPLATE = app
     TARGET = pruefungsplaner-scheduler
 }
+
+unix{
+    # Install executable
+    target.path = /usr/bin
+
+    spa_algorithm.path = /usr/bin
+    spa_algorithm.files = SPA-algorithmus
+
+    # Install default config file
+    config.path = /etc/$${TARGET}/
+    config.files = res/config.toml
+
+    # Create data directory
+    datadir.path = /usr/share/$${TARGET}
+    datadir.extra = " "
+    datadir.uninstall = " "
+
+    # Create directory for storage
+    storage.path = $${datadir.path}/data
+    storage.extra = " "
+    storage.uninstall = " "
+}
+
+!isEmpty(target.path): INSTALLS += target
+!isEmpty(spa_algorithm.path): INSTALLS += spa_algorithm
+!isEmpty(config.path): INSTALLS += config
+!isEmpty(storage.path): INSTALLS += storage
+!isEmpty(datadir.path): INSTALLS += datadir
+
+DEFINES += DEFAULT_CONFIG_PATH=\"\\\"$${config.path}\\\"\" \
+           DEFAULT_STORAGE_PATH=\"\\\"$${storage.path}\\\"\"
