@@ -13,11 +13,13 @@ INCLUDEPATH += $$PWD/libs/cpptoml/include
 LIBS += -lcrypto
 
 SOURCES += \
+        src/configuration.cpp \
         src/main.cpp \
         src/legacyscheduler.cpp \
         src/schedulerservice.cpp
 
 HEADERS += \
+    src/configuration.h \
     src/legacyscheduler.h \
     src/scheduler.h \
     src/schedulerservice.h
@@ -61,6 +63,11 @@ unix{
     datadir.extra = " "
     datadir.uninstall = " "
 
+    # Create directory for keys
+    keys.path = $${datadir.path}/keys
+    keys.extra = " "
+    keys.uninstall = " "
+
     # Create directory for storage
     storage.path = $${datadir.path}/data
     storage.extra = " "
@@ -70,6 +77,7 @@ unix{
 !isEmpty(target.path): INSTALLS += target
 !isEmpty(spa_algorithm.path): INSTALLS += spa_algorithm
 !isEmpty(config.path): INSTALLS += config
+!isEmpty(keys.path): INSTALLS += keys
 !isEmpty(storage.path): INSTALLS += storage
 !isEmpty(datadir.path): INSTALLS += datadir
 
