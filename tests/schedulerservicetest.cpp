@@ -10,15 +10,23 @@
 #include <QSharedPointer>
 #include <QSignalSpy>
 #include <QString>
+#include "configuration.h"
 #include "plan.h"
 #include "schedulerservice.h"
 #include "testdatahelper.h"
 
 using namespace testing;
 
+QSharedPointer<Configuration> getDefaultConfiguration() {
+  QList<QString> arguments{"pruefungsplaner-scheduler-tests", "--storage",
+                           "/tmp"};
+  QSharedPointer<Configuration> configuration(new Configuration(arguments));
+  return configuration;
+}
+
 TEST(schedulerServiceTests, getResultAfterSchedulingReturnsPlan) {
   QJsonObject jsonPlan = getValidJsonPlan();
-  SchedulerService schedulerService;
+  SchedulerService schedulerService(getDefaultConfiguration());
   schedulerService.startScheduling(jsonPlan);
 
   QTime limit = QTime::currentTime().addMSecs(500);
@@ -32,13 +40,13 @@ TEST(schedulerServiceTests, getResultAfterSchedulingReturnsPlan) {
 }
 
 TEST(schedulerServiceTests, getResultWithoutSchedulingReturnsUndefined) {
-  SchedulerService schedulerService;
+  SchedulerService schedulerService(getDefaultConfiguration());
   ASSERT_TRUE(schedulerService.getResult().isUndefined());
 }
 
 TEST(schedulerServiceTests, getResultWithUnschedulablePlanReturnsErrormessage) {
   QJsonObject jsonPlan = getInvalidJsonPlan();
-  SchedulerService schedulerService;
+  SchedulerService schedulerService(getDefaultConfiguration());
   schedulerService.startScheduling(jsonPlan);
 
   QTime limit = QTime::currentTime().addMSecs(500);
@@ -52,13 +60,13 @@ TEST(schedulerServiceTests, getResultWithUnschedulablePlanReturnsErrormessage) {
 }
 
 TEST(schedulerServiceTests, progessAfterConstructionIsZero) {
-  SchedulerService schedulerService;
+  SchedulerService schedulerService(getDefaultConfiguration());
   ASSERT_EQ(schedulerService.getProgress(), 0.0);
 }
 
 TEST(schedulerServiceTests, progessAfterSchedulingIsOne) {
   QJsonObject jsonPlan = getValidJsonPlan();
-  SchedulerService schedulerService;
+  SchedulerService schedulerService(getDefaultConfiguration());
   schedulerService.startScheduling(jsonPlan);
 
   QTime limit = QTime::currentTime().addMSecs(500);
@@ -72,7 +80,7 @@ TEST(schedulerServiceTests, progessAfterSchedulingIsOne) {
 
 TEST(schedulerServiceTests, progessAfterFailedSchedulingIsOne) {
   QJsonObject jsonPlan = getInvalidJsonPlan();
-  SchedulerService schedulerService;
+  SchedulerService schedulerService(getDefaultConfiguration());
   schedulerService.startScheduling(jsonPlan);
 
   QTime limit = QTime::currentTime().addMSecs(500);
@@ -86,7 +94,7 @@ TEST(schedulerServiceTests, progessAfterFailedSchedulingIsOne) {
 
 TEST(schedulerServiceTests, secondSchedulingAttemptFails) {
   QJsonObject jsonPlan = getInvalidJsonPlan();
-  SchedulerService schedulerService;
+  SchedulerService schedulerService(getDefaultConfiguration());
   ASSERT_TRUE(schedulerService.startScheduling(jsonPlan));
   ASSERT_FALSE(schedulerService.startScheduling(jsonPlan));
 }

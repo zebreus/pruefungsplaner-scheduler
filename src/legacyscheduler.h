@@ -40,7 +40,7 @@ class LegacyScheduler : public QObject, public Scheduler {
    *  @param [in] parent is the parent of this QObject
    */
   explicit LegacyScheduler(QSharedPointer<Plan> plan,
-                           const QString& algorithmBinary,
+                           const QString& algorithmBinary = "./SPA-algorithmus",
                            const bool printLog = false,
                            const SchedulingMode mode = Fast,
                            QObject* parent = nullptr);
