@@ -19,7 +19,7 @@ using namespace testing;
 
 QSharedPointer<Configuration> getDefaultConfiguration() {
   QList<QString> arguments{"pruefungsplaner-scheduler-tests", "--storage",
-                           "/tmp"};
+                           "/tmp", "--legacy-scheduler-binary", "./SPA-algorithmus"};
   QSharedPointer<Configuration> configuration(new Configuration(arguments));
   return configuration;
 }
