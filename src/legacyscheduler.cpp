@@ -33,7 +33,7 @@ bool LegacyScheduler::startScheduling() {
 }
 
 bool LegacyScheduler::prepareEnvironment() {
-  if (!csvHelper.writePlan(originalPlan)) {
+  if (!csvHelper.writePlan(originalPlan.get())) {
     emit failedScheduling("Failed to prepare environment");
     return false;
   } else {
@@ -105,7 +105,7 @@ bool LegacyScheduler::readResults() {
     return false;
   }
 
-  if (csvHelper.readSchedule(plan)) {
+  if (csvHelper.readSchedule(plan.get())) {
     emit finishedScheduling(plan);
     return true;
   } else {
