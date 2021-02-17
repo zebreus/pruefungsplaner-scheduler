@@ -145,6 +145,46 @@ TEST(legacySchedulerTests, startSchedulingDoesNotEmitFailedOnSchedulablePlan) {
   ASSERT_FALSE(emittedFailed);
 }
 
+TEST(legacySchedulerTests, startSchedulingDoesEmitFailOnPlanWithInvalidModules) {
+  QSharedPointer<Plan> plan = getValidPlan();
+  plan->getModules()[0]->setGroups(QList<Group*>());
+  plan->getModules()[0]->setActive(true);
+  LegacyScheduler scheduler(plan);
+
+  bool emittedFailed = false;
+  QObject::connect(&scheduler, &LegacyScheduler::failedScheduling,
+                   [&emittedFailed](auto) { emittedFailed = true; });
+
+  scheduler.startScheduling();
+
+  QTime limit = QTime::currentTime().addMSecs(500);
+  while (QTime::currentTime() < limit && !emittedFailed) {
+    QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
+  }
+
+  ASSERT_TRUE(emittedFailed);
+}
+
+TEST(legacySchedulerTests, startSchedulingDoesNotEmitFailOnPlanWithInactiveInvalidModules) {
+  QSharedPointer<Plan> plan = getValidPlan();
+  plan->getModules()[0]->setGroups(QList<Group*>());
+  plan->getModules()[0]->setActive(false);
+  LegacyScheduler scheduler(plan);
+
+  bool emittedFailed = false;
+  QObject::connect(&scheduler, &LegacyScheduler::failedScheduling,
+                   [&emittedFailed](auto) { emittedFailed = true; });
+
+  scheduler.startScheduling();
+
+  QTime limit = QTime::currentTime().addMSecs(500);
+  while (QTime::currentTime() < limit && !emittedFailed) {
+    QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
+  }
+
+  ASSERT_FALSE(emittedFailed);
+}
+
 TEST(legacySchedulerTests, startSchedulingEmitsFullProgressAfterSuccess) {
   QSharedPointer<Plan> plan = getValidPlan();
   LegacyScheduler scheduler(plan);
