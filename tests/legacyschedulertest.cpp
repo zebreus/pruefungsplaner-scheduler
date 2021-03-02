@@ -43,7 +43,7 @@ TEST(legacySchedulerTests, startSchedulingAddsScheduleToPlanOnSuccess) {
   ASSERT_TRUE(scheduler.startScheduling());
   bool unscheduledModule = false;
   for (auto module : plan->getModules()) {
-    if (module->getOrigin() != "EIT") {
+    if (module->getOrigin() != "EIT" && module->getActive() == true) {
       for (auto week : plan->getWeeks()) {
         for (auto day : week->getDays()) {
           for (auto timeslot : day->getTimeslots()) {

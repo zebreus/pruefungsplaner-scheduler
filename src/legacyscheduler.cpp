@@ -109,7 +109,7 @@ bool LegacyScheduler::readResults() {
     emit finishedScheduling(plan);
     return true;
   } else {
-    emit failedScheduling("Failed to read scheduling results");
+    emit failedScheduling("Failed to read scheduling results. Maybe the algorithm was not able to schedule, but did not error.");
     return false;
   }
 }
