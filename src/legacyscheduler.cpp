@@ -73,25 +73,26 @@ bool LegacyScheduler::executeScheduler() {
   // Use this for planning with soft constraints (Execution takes ~1 hour)
   // int exitCode = system(QString("echo -ne jjn | ./SPA-algorithmus -p " +
   // workingDirectory.path() + " -PP").toUtf8().constData());
+  if (logfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    QTextStream fileStream(&logfile);
+    QString errormessage;
+    while (!fileStream.atEnd()) {
+      QString line = fileStream.readLine();
+      if(line.contains("FEHLER") || ( line.contains("WARNUNG") && !line.contains("WARNUNGEN")) || line.contains("kann nicht zugeteilt werden")){
+        errormessage += line + '\n';
+        qDebug() << line;
+      }
+    }
+    logfile.close();
+    if (errormessage != "") {
+      emit failedScheduling(errormessage);
+      return false;
+    }
+  }
   if (exitCode == 0) {
     return true;
   } else {
     // Try to detect a errormessage in the logfile
-    if (logfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-      QTextStream fileStream(&errorLogfile);
-      QString errormessage;
-      while (!fileStream.atEnd()) {
-        QString line = fileStream.readLine();
-        errormessage += line;
-        qDebug() << line;
-        break;
-      }
-      errorLogfile.close();
-      if (errormessage != "") {
-        emit failedScheduling(errormessage);
-        return false;
-      }
-    }
     emit failedScheduling("Failed to execute SPA-algorithmus");
     return false;
   }
