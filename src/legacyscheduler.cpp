@@ -45,7 +45,7 @@ bool LegacyScheduler::executeScheduler() {
   std::clog << "Starting scheduling";
 
   QString input;
-  switch(mode){
+  switch (mode) {
     case Fast:
       input = "jn";
       break;
@@ -55,18 +55,19 @@ bool LegacyScheduler::executeScheduler() {
   }
 
   QFile logfile(workingDirectory.path() + "/scheduler.log");
-  int exitCode = system(QString("echo -ne " + input + " | " + algorithmBinary + " -p " +
-                                workingDirectory.path() + " -PP > " +
-                                logfile.fileName() + " 2>&1 ")
-                            .toUtf8()
-                            .constData());
+  QFile errorLogfile(workingDirectory.path() + "/schedulerErrors.log");
+  QString command("echo -ne " + input + " | " + algorithmBinary + " -p " +
+                  workingDirectory.path() + " -PP 2>&1 >> " +
+                  logfile.fileName() + " | tee " + errorLogfile.fileName() +
+                  " >> " + logfile.fileName());
+  int exitCode = system(command.toUtf8().constData());
 
-  if(printLog){
-      if (logfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QTextStream fileStream(&logfile);
-        qDebug() << fileStream.readAll();
-        logfile.close();
-      }
+  if (printLog) {
+    if (logfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+      QTextStream fileStream(&logfile);
+      qDebug() << fileStream.readAll();
+      logfile.close();
+    }
   }
   // Add -t 16 for 16 threads
   // Use this for planning with soft constraints (Execution takes ~1 hour)
@@ -77,17 +78,15 @@ bool LegacyScheduler::executeScheduler() {
   } else {
     // Try to detect a errormessage in the logfile
     if (logfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-      QTextStream fileStream(&logfile);
+      QTextStream fileStream(&errorLogfile);
       QString errormessage;
       while (!fileStream.atEnd()) {
         QString line = fileStream.readLine();
-        if (line.startsWith("FEHLER")) {
-          errormessage = line;
-          qDebug() << line;
-          break;
-        }
+        errormessage += line;
+        qDebug() << line;
+        break;
       }
-      logfile.close();
+      errorLogfile.close();
       if (errormessage != "") {
         emit failedScheduling(errormessage);
         return false;
@@ -109,7 +108,9 @@ bool LegacyScheduler::readResults() {
     emit finishedScheduling(plan);
     return true;
   } else {
-    emit failedScheduling("Failed to read scheduling results. Maybe the algorithm was not able to schedule, but did not error.");
+    emit failedScheduling(
+        "Failed to read scheduling results. Maybe the algorithm was not able "
+        "to schedule, but did not error.");
     return false;
   }
 }
