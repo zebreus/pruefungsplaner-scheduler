@@ -26,20 +26,21 @@ HEADERS += \
 
 test{
     message(Building tests)
-    include(gtest_dependency.pri)
+    include($$PWD/libs/gtest/gtest_dependency.pri)
 
     QT += testlib
     TEMPLATE = app
     TARGET = pruefungsplaner-scheduler-tests
     
     CONFIG += thread
-    LIBS += -lgtest -lgtest_main
+    LIBS += -lgtest
     INCLUDEPATH += src
 
     SOURCES -= src/main.cpp
     SOURCES += tests/qthelper.cpp \
             tests/legacyschedulertest.cpp \
-            tests/schedulerservicetest.cpp
+            tests/schedulerservicetest.cpp \
+            libs/gtest/main.cpp
 }
 else{
     message(Building app)
