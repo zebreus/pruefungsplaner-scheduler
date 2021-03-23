@@ -26,6 +26,7 @@ class SchedulerService: public QObject {
   QScopedPointer<Scheduler> scheduler;
   double progress;
   QJsonValue result;
+  QString customAlgorithm;
 
  public:
   /**
@@ -47,6 +48,23 @@ class SchedulerService: public QObject {
    *  Returns false if a plan is already being scheduled
    */
   bool startScheduling(QJsonObject plan);
+
+  /**
+   *  @brief Set the mode for the next and all subsequent schedules
+   *  @param [in] mode is the scheduling mode
+   *  @return A boolean indicating, if setting the mode was successfull
+   *
+   *  mode has to be "legacy-good" or "legacy-fast"
+   */
+  bool setSchedulingAlgorithm(QString mode);
+
+  /**
+   *  @brief Try to stop the current scheduling
+   *  @return A boolean indicating if scheduler was asked to stop
+   *
+   *  Try to stop the current scheduling. Will emit finishedScheduling or failedScheduling, when it stopped
+   */
+  bool stopScheduling();
 
   /**
    *  @brief Get the progress of scheduling

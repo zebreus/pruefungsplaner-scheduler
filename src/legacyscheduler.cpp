@@ -142,7 +142,7 @@ bool LegacyScheduler::executeScheduler() {
   return true;
 }
 
-void LegacyScheduler::processLine(const QString& line, QProcess::ProcessChannel channel) {
+void LegacyScheduler::processLine(const QString& line, QProcess::ProcessChannel) {
   if(printLog) {
     qDebug() << "Read line: " << line;
   }

@@ -12,6 +12,10 @@ bool SchedulerService::startScheduling(QJsonObject plan) {
   planPointer->fromJsonObject(plan);
 
   QString schedulingAlgorithm = configuration->getDefaultSchedulingAlgorithm();
+  if(!customAlgorithm.isEmpty()) {
+    schedulingAlgorithm = customAlgorithm;
+  }
+
   if(schedulingAlgorithm.startsWith("legacy")) {
     LegacyScheduler::SchedulingMode legacySchedulerMode;
     if(schedulingAlgorithm == "legacy-fast") {
@@ -45,6 +49,23 @@ bool SchedulerService::startScheduling(QJsonObject plan) {
 
   scheduler->startScheduling();
 
+  return true;
+}
+
+bool SchedulerService::setSchedulingAlgorithm(QString mode) {
+  if(mode == "legacy-fast" || mode == "legacy-good") {
+    customAlgorithm = mode;
+    return true;
+  }
+
+  return false;
+}
+
+bool SchedulerService::stopScheduling() {
+  if(scheduler.isNull()) {
+    return false;
+  }
+  scheduler->stopScheduling();
   return true;
 }
 

@@ -96,4 +96,27 @@ TEST(schedulerServiceTests, secondSchedulingAttemptFails) {
   ASSERT_FALSE(schedulerService.startScheduling(jsonPlan));
 }
 
+TEST(schedulerServiceTests, setSchedulingAlgorithmOnlyAcceptsValidValues) {
+  QJsonObject jsonPlan = getInvalidJsonPlan();
+  SchedulerService schedulerService(getDefaultConfiguration());
+  ASSERT_TRUE(schedulerService.setSchedulingAlgorithm("legacy-fast"));
+  ASSERT_TRUE(schedulerService.setSchedulingAlgorithm("legacy-good"));
+  ASSERT_FALSE(schedulerService.setSchedulingAlgorithm("legacy-faste"));
+  ASSERT_FALSE(schedulerService.setSchedulingAlgorithm(" legacy-good"));
+}
+
+TEST(schedulerServiceTests, stopSchedulingReturnsFalseBeforeFirstStart) {
+  QJsonObject jsonPlan = getInvalidJsonPlan();
+  SchedulerService schedulerService(getDefaultConfiguration());
+  ASSERT_FALSE(schedulerService.stopScheduling());
+  schedulerService.startScheduling(jsonPlan);
+}
+
+TEST(schedulerServiceTests, stopSchedulingReturnsTrueAfterFirstStart) {
+  QJsonObject jsonPlan = getInvalidJsonPlan();
+  SchedulerService schedulerService(getDefaultConfiguration());
+  schedulerService.startScheduling(jsonPlan);
+  ASSERT_TRUE(schedulerService.stopScheduling());
+}
+
 #endif
