@@ -3,6 +3,7 @@
 
 #include <gmock/gmock-matchers.h>
 #include <gtest/gtest.h>
+
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -10,6 +11,7 @@
 #include <QSharedPointer>
 #include <QSignalSpy>
 #include <QString>
+
 #include "configuration.h"
 #include "plan.h"
 #include "schedulerservice.h"
@@ -18,8 +20,7 @@
 using namespace testing;
 
 QSharedPointer<Configuration> getDefaultConfiguration() {
-  QList<QString> arguments{"pruefungsplaner-scheduler-tests", "--storage",
-                           "/tmp", "--legacy-scheduler-binary", "./SPA-algorithmus"};
+  QList<QString> arguments{"pruefungsplaner-scheduler-tests", "--storage", "/tmp", "--legacy-scheduler-binary", "./SPA-algorithmus"};
   QSharedPointer<Configuration> configuration(new Configuration(arguments));
   return configuration;
 }
@@ -30,8 +31,7 @@ TEST(schedulerServiceTests, getResultAfterSchedulingReturnsPlan) {
   schedulerService.startScheduling(jsonPlan);
 
   QTime limit = QTime::currentTime().addMSecs(500);
-  while (QTime::currentTime() < limit &&
-         schedulerService.getProgress() != 1.0) {
+  while(QTime::currentTime() < limit && schedulerService.getProgress() != 1.0) {
     QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
   }
 
@@ -50,8 +50,7 @@ TEST(schedulerServiceTests, getResultWithUnschedulablePlanReturnsErrormessage) {
   schedulerService.startScheduling(jsonPlan);
 
   QTime limit = QTime::currentTime().addMSecs(500);
-  while (QTime::currentTime() < limit &&
-         schedulerService.getProgress() != 1.0) {
+  while(QTime::currentTime() < limit && schedulerService.getProgress() != 1.0) {
     QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
   }
 
@@ -70,8 +69,7 @@ TEST(schedulerServiceTests, progessAfterSchedulingIsOne) {
   schedulerService.startScheduling(jsonPlan);
 
   QTime limit = QTime::currentTime().addMSecs(500);
-  while (QTime::currentTime() < limit &&
-         schedulerService.getProgress() != 1.0) {
+  while(QTime::currentTime() < limit && schedulerService.getProgress() != 1.0) {
     QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
   }
 
@@ -84,8 +82,7 @@ TEST(schedulerServiceTests, progessAfterFailedSchedulingIsOne) {
   schedulerService.startScheduling(jsonPlan);
 
   QTime limit = QTime::currentTime().addMSecs(500);
-  while (QTime::currentTime() < limit &&
-         schedulerService.getProgress() != 1.0) {
+  while(QTime::currentTime() < limit && schedulerService.getProgress() != 1.0) {
     QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
   }
 

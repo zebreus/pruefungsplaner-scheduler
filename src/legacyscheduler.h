@@ -1,11 +1,17 @@
 #ifndef LEGACYSCHEDULER_H
 #define LEGACYSCHEDULER_H
 
+#include <signal.h>
+#include <unistd.h>
+
 #include <QObject>
+#include <QProcess>
 #include <QSharedPointer>
 #include <QString>
+
 #include "plancsvhelper.h"
 #include "scheduler.h"
+
 /**
  *  @class LegacyScheduler
  *  @brief A wrapper for the legacy scheduling algorithm
@@ -13,7 +19,7 @@
  *  This class provides a scheduler implementation, which uses the legacy
  * sp-automatisch scheduler. It needs a sp-automatisch binary.
  */
-class LegacyScheduler : public QObject, public Scheduler {
+class LegacyScheduler: public Scheduler {
   Q_OBJECT
 
  public:
@@ -28,9 +34,13 @@ class LegacyScheduler : public QObject, public Scheduler {
   QTemporaryDir workingDirectory;
   PlanCsvHelper csvHelper;
   QSharedPointer<Plan> originalPlan;
-  QString algorithmBinary;
   bool printLog;
   SchedulingMode mode;
+  QProcess schedulerProcess;
+
+  QString failReason;
+  bool emitedFailedOrFinished;
+  QString prepareCommand;
 
  public:
   /**
@@ -45,38 +55,32 @@ class LegacyScheduler : public QObject, public Scheduler {
                            const SchedulingMode mode = Fast,
                            QObject* parent = nullptr);
 
+  ~LegacyScheduler();
+
   /**
    *  @brief Start scheduling the plan passed in the constructor
    *  @return A boolean indicating if scheduling was started
    */
-  bool startScheduling();
+  bool startScheduling() override;
+
+  /**
+   * @brief Stop the running scheduling and emit result, if possible
+   */
+  void stopScheduling() override;
 
  private:
   bool prepareEnvironment();
 
   bool executeScheduler();
 
+  void processLine(const QString& line, QProcess::ProcessChannel channel);
+
   bool readResults();
 
- signals:
-
   /**
-   *  @brief This signal will be emitted, when progress is made
-   *  @param progress is the current progress
+   *  @brief Emits failedScheduling with the message reason. If reason is not set, alternativeReason is used
    */
-  void updateProgress(double progress);
-
-  /**
-   *  @brief This signal will be emitted if the scheduling finished successfully
-   *  @param plan is a pointer to the scheduled plan
-   */
-  void finishedScheduling(QSharedPointer<Plan> plan);
-
-  /**
-   *  @brief This signal will be emitted, if scheduling failed
-   *  @param message contains a message with information about the failure
-   */
-  void failedScheduling(QString message);
+  void failScheduling(QString alternativeReason);
 };
 
 #endif  // LEGACYSCHEDULER_H

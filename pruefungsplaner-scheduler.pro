@@ -1,7 +1,7 @@
 QT -= gui
 QT += websockets
 
-CONFIG += c++14 console
+CONFIG += c++2a console
 CONFIG -= app_bundle
 
 include($$PWD/libs/pruefungsplaner-datamodel/pruefungsplaner-datamodel.pri)

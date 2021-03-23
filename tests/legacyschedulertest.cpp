@@ -4,6 +4,7 @@
 #include <gmock/gmock-matchers.h>
 #include <gtest/gtest.h>
 #include <testdatahelper.h>
+
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -11,6 +12,7 @@
 #include <QSharedPointer>
 #include <QSignalSpy>
 #include <QString>
+
 #include "legacyscheduler.h"
 #include "plan.h"
 
@@ -26,10 +28,10 @@ TEST(legacySchedulerTests, startSchedulingReturnsTrueOnSuccess) {
   ASSERT_TRUE(scheduler.startScheduling());
 }
 
-TEST(legacySchedulerTests, startSchedulingReturnsFalseOnUnschedulablePlan) {
+TEST(legacySchedulerTests, startSchedulingReturnsTrueOnUnschedulablePlan) {
   QSharedPointer<Plan> plan = getInvalidPlan();
   LegacyScheduler scheduler(plan);
-  ASSERT_FALSE(scheduler.startScheduling());
+  ASSERT_TRUE(scheduler.startScheduling());
 }
 
 TEST(legacySchedulerTests, startSchedulingReturnsFalseOnNullptrPlan) {
@@ -40,15 +42,33 @@ TEST(legacySchedulerTests, startSchedulingReturnsFalseOnNullptrPlan) {
 TEST(legacySchedulerTests, startSchedulingAddsScheduleToPlanOnSuccess) {
   QSharedPointer<Plan> plan = getValidPlan();
   LegacyScheduler scheduler(plan);
+
+  bool finished = false;
+  bool failed = false;
+  QCoreApplication::connect(&scheduler, &Scheduler::finishedScheduling, [&finished]() {
+    finished = true;
+  });
+  QCoreApplication::connect(&scheduler, &Scheduler::failedScheduling, [&failed]() {
+    failed = true;
+  });
   ASSERT_TRUE(scheduler.startScheduling());
+
+  QTime limit = QTime::currentTime().addMSecs(500);
+  while(QTime::currentTime() < limit && !finished && !failed) {
+    QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
+  }
+
+  ASSERT_TRUE(finished);
+  ASSERT_FALSE(failed);
+
   bool unscheduledModule = false;
-  for (auto module : plan->getModules()) {
-    if (module->getOrigin() != "EIT" && module->getActive() == true) {
-      for (auto week : plan->getWeeks()) {
-        for (auto day : week->getDays()) {
-          for (auto timeslot : day->getTimeslots()) {
-            for (auto scheduledModule : timeslot->getModules()) {
-              if (module->getNumber() == scheduledModule->getNumber()) {
+  for(auto module : plan->getModules()) {
+    if(module->getOrigin() != "EIT" && module->getActive() == true) {
+      for(auto week : plan->getWeeks()) {
+        for(auto day : week->getDays()) {
+          for(auto timeslot : day->getTimeslots()) {
+            for(auto scheduledModule : timeslot->getModules()) {
+              if(module->getNumber() == scheduledModule->getNumber()) {
                 goto continueModuleLoop;
               }
             }
@@ -67,20 +87,19 @@ TEST(legacySchedulerTests, startSchedulingAddsScheduleToPlanOnSuccess) {
   ASSERT_FALSE(unscheduledModule);
 }
 
-TEST(legacySchedulerTests,
-     startSchedulingEmitsPointerFromConstructorOnSuccess) {
+TEST(legacySchedulerTests, startSchedulingEmitsPointerFromConstructorOnSuccess) {
   QSharedPointer<Plan> plan = getValidPlan();
   LegacyScheduler scheduler(plan);
 
   QSharedPointer<Plan> emittedPlan = nullptr;
-  QObject::connect(
-      &scheduler, &LegacyScheduler::finishedScheduling,
-      [&emittedPlan](QSharedPointer<Plan> plan) { emittedPlan = plan; });
+  QObject::connect(&scheduler, &Scheduler::finishedScheduling, [&emittedPlan](QSharedPointer<Plan> plan) {
+    emittedPlan = plan;
+  });
 
   scheduler.startScheduling();
 
   QTime limit = QTime::currentTime().addMSecs(500);
-  while (QTime::currentTime() < limit && emittedPlan == nullptr) {
+  while(QTime::currentTime() < limit && emittedPlan == nullptr) {
     QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
   }
 
@@ -88,39 +107,38 @@ TEST(legacySchedulerTests,
   ASSERT_EQ(emittedPlan, plan);
 }
 
-TEST(legacySchedulerTests,
-     startSchedulingEmitsFailedSchedulingOnUnschedulablePlan) {
+TEST(legacySchedulerTests, startSchedulingEmitsFailedSchedulingOnUnschedulablePlan) {
   QSharedPointer<Plan> plan = getInvalidPlan();
   LegacyScheduler scheduler(plan);
 
   int failedSignalCount = 0;
-  QObject::connect(&scheduler, &LegacyScheduler::failedScheduling,
-                   [&failedSignalCount](QString) { failedSignalCount++; });
+  QObject::connect(&scheduler, &Scheduler::failedScheduling, [&failedSignalCount](QString) {
+    failedSignalCount++;
+  });
 
   scheduler.startScheduling();
 
   QTime limit = QTime::currentTime().addMSecs(500);
-  while (QTime::currentTime() < limit && failedSignalCount == 0) {
+  while(QTime::currentTime() < limit && failedSignalCount == 0) {
     QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
   }
 
-  ASSERT_EQ(failedSignalCount, 1)
-      << "Expected 1 failedScheduling, but got " << failedSignalCount;
+  ASSERT_EQ(failedSignalCount, 1) << "Expected 1 failedScheduling, but got " << failedSignalCount;
 }
 
-TEST(legacySchedulerTests,
-     startSchedulingDoesNotEmitSuccessOnUnschedulablePlan) {
+TEST(legacySchedulerTests, startSchedulingDoesNotEmitSuccessOnUnschedulablePlan) {
   QSharedPointer<Plan> plan = getInvalidPlan();
   LegacyScheduler scheduler(plan);
 
   bool emittedFinished = false;
-  QObject::connect(&scheduler, &LegacyScheduler::finishedScheduling,
-                   [&emittedFinished](auto) { emittedFinished = true; });
+  QObject::connect(&scheduler, &Scheduler::finishedScheduling, [&emittedFinished](auto) {
+    emittedFinished = true;
+  });
 
   scheduler.startScheduling();
 
   QTime limit = QTime::currentTime().addMSecs(500);
-  while (QTime::currentTime() < limit && !emittedFinished) {
+  while(QTime::currentTime() < limit && !emittedFinished) {
     QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
   }
 
@@ -132,13 +150,14 @@ TEST(legacySchedulerTests, startSchedulingDoesNotEmitFailedOnSchedulablePlan) {
   LegacyScheduler scheduler(plan);
 
   bool emittedFailed = false;
-  QObject::connect(&scheduler, &LegacyScheduler::failedScheduling,
-                   [&emittedFailed](auto) { emittedFailed = true; });
+  QObject::connect(&scheduler, &Scheduler::failedScheduling, [&emittedFailed](auto) {
+    emittedFailed = true;
+  });
 
   scheduler.startScheduling();
 
   QTime limit = QTime::currentTime().addMSecs(500);
-  while (QTime::currentTime() < limit && !emittedFailed) {
+  while(QTime::currentTime() < limit && !emittedFailed) {
     QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
   }
 
@@ -152,13 +171,14 @@ TEST(legacySchedulerTests, startSchedulingDoesEmitFailOnPlanWithInvalidModules) 
   LegacyScheduler scheduler(plan);
 
   bool emittedFailed = false;
-  QObject::connect(&scheduler, &LegacyScheduler::failedScheduling,
-                   [&emittedFailed](auto) { emittedFailed = true; });
+  QObject::connect(&scheduler, &Scheduler::failedScheduling, [&emittedFailed](auto) {
+    emittedFailed = true;
+  });
 
   scheduler.startScheduling();
 
   QTime limit = QTime::currentTime().addMSecs(500);
-  while (QTime::currentTime() < limit && !emittedFailed) {
+  while(QTime::currentTime() < limit && !emittedFailed) {
     QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
   }
 
@@ -172,13 +192,14 @@ TEST(legacySchedulerTests, startSchedulingDoesNotEmitFailOnPlanWithInactiveInval
   LegacyScheduler scheduler(plan);
 
   bool emittedFailed = false;
-  QObject::connect(&scheduler, &LegacyScheduler::failedScheduling,
-                   [&emittedFailed](auto) { emittedFailed = true; });
+  QObject::connect(&scheduler, &Scheduler::failedScheduling, [&emittedFailed](auto) {
+    emittedFailed = true;
+  });
 
   scheduler.startScheduling();
 
   QTime limit = QTime::currentTime().addMSecs(500);
-  while (QTime::currentTime() < limit && !emittedFailed) {
+  while(QTime::currentTime() < limit && !emittedFailed) {
     QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
   }
 
@@ -190,21 +211,18 @@ TEST(legacySchedulerTests, startSchedulingEmitsFullProgressAfterSuccess) {
   LegacyScheduler scheduler(plan);
 
   double lastProgressUpdate = -1.0;
-  QObject::connect(&scheduler, &LegacyScheduler::updateProgress,
-                   [&lastProgressUpdate](double progress) {
-                     lastProgressUpdate = progress;
-                   });
+  QObject::connect(&scheduler, &Scheduler::updateProgress, [&lastProgressUpdate](double progress) {
+    lastProgressUpdate = progress;
+  });
 
   scheduler.startScheduling();
 
   QTime limit = QTime::currentTime().addMSecs(500);
-  while (QTime::currentTime() < limit && lastProgressUpdate != 1.0) {
+  while(QTime::currentTime() < limit && lastProgressUpdate != 1.0) {
     QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
   }
 
-  ASSERT_EQ(lastProgressUpdate, 1.0)
-      << "Expected the last updateProgress signal to emit 1.0, but got "
-      << lastProgressUpdate;
+  ASSERT_EQ(lastProgressUpdate, 1.0) << "Expected the last updateProgress signal to emit 1.0, but got " << lastProgressUpdate;
 }
 
 TEST(legacySchedulerTests, startSchedulingRemovesOldScheduledModulesFromPlan) {
@@ -214,32 +232,23 @@ TEST(legacySchedulerTests, startSchedulingRemovesOldScheduledModulesFromPlan) {
   ASSERT_GE(plan->getWeeks()[0]->getDays().size(), 1);
   ASSERT_GE(plan->getWeeks()[0]->getDays()[0]->getTimeslots().size(), 2);
   ASSERT_GE(plan->getModules().size(), 1);
-  plan->getWeeks()[0]->getDays()[0]->getTimeslots()[0]->addModule(
-      plan->getModules()[0]);
-  plan->getWeeks()[0]->getDays()[0]->getTimeslots()[1]->addModule(
-      plan->getModules()[0]);
+  plan->getWeeks()[0]->getDays()[0]->getTimeslots()[0]->addModule(plan->getModules()[0]);
+  plan->getWeeks()[0]->getDays()[0]->getTimeslots()[1]->addModule(plan->getModules()[0]);
 
   LegacyScheduler scheduler(plan);
   bool emittedFinished = false;
-  QObject::connect(&scheduler, &LegacyScheduler::finishedScheduling,
-                   [&emittedFinished](auto) { emittedFinished = true; });
+  QObject::connect(&scheduler, &Scheduler::finishedScheduling, [&emittedFinished](auto) {
+    emittedFinished = true;
+  });
 
   ASSERT_TRUE(scheduler.startScheduling());
 
   QTime limit = QTime::currentTime().addMSecs(500);
-  while (QTime::currentTime() < limit && !emittedFinished) {
+  while(QTime::currentTime() < limit && !emittedFinished) {
     QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
   }
 
-  EXPECT_FALSE(plan->getWeeks()[0]
-                   ->getDays()[0]
-                   ->getTimeslots()[0]
-                   ->getModules()
-                   .contains(plan->getModules()[0]) &&
-               plan->getWeeks()[0]
-                   ->getDays()[0]
-                   ->getTimeslots()[1]
-                   ->getModules()
-                   .contains(plan->getModules()[0]));
+  EXPECT_FALSE(plan->getWeeks()[0]->getDays()[0]->getTimeslots()[0]->getModules().contains(plan->getModules()[0]) &&
+               plan->getWeeks()[0]->getDays()[0]->getTimeslots()[1]->getModules().contains(plan->getModules()[0]));
 }
 #endif

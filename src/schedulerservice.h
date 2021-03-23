@@ -3,10 +3,11 @@
 
 #include <QJsonValue>
 #include <QObject>
+
+#include "configuration.h"
 #include "legacyscheduler.h"
 #include "plan.h"
 #include "scheduler.h"
-#include "configuration.h"
 
 /**
  *  @class SchedulerService
@@ -17,7 +18,7 @@
  *
  *  This class will be rewritten, when the jsonrpc module supports signals.
  */
-class SchedulerService : public QObject {
+class SchedulerService: public QObject {
   Q_OBJECT
 
  private:
@@ -67,6 +68,31 @@ class SchedulerService : public QObject {
    * with the error message as a string is returned.
    */
   QJsonValue getResult();
+
+ signals:
+  /**
+   *  @brief This signal will be emitted, when progress is made
+   *  @param progress is the current progress
+   */
+  void updateProgress(double progress);
+
+  /**
+   *  @brief This signal will be emitted, when something may have went wrong
+   *  @param progress is the current progress
+   */
+  void emitWarning(QString warning);
+
+  /**
+   *  @brief This signal will be emitted if the scheduling finished successfully
+   *  @param plan is a pointer to the scheduled plan
+   */
+  void finishedScheduling(QJsonObject plan);
+
+  /**
+   *  @brief This signal will be emitted, if scheduling failed
+   *  @param message contains a message with information about the failure
+   */
+  void failedScheduling(QString message);
 };
 
 #endif  // SCHEDULERSERVICE_H

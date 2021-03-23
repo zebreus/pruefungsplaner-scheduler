@@ -2,6 +2,7 @@
 #define SCHEDULER_H
 
 #include <plan.h>
+
 #include <QSharedPointer>
 #include <QString>
 
@@ -11,13 +12,20 @@
  *
  *  A class implementing Scheduler can schedule plans
  */
-class Scheduler {
+class Scheduler: public QObject {
+  Q_OBJECT
  public:
+  explicit Scheduler(QObject* parent = nullptr): QObject(parent) {}
   /**
    *  @brief Start scheduling the plan passed in the constructor
    *  @return A boolean indicating if scheduling was started
    */
   virtual bool startScheduling() = 0;
+
+  /**
+   * @brief Stop the running scheduling and emit result, if possible
+   */
+  virtual void stopScheduling() = 0;
 
   // virtual destructor for interface
   virtual ~Scheduler() {}
@@ -28,19 +36,25 @@ class Scheduler {
    *  @brief This signal will be emitted, when progress is made
    *  @param progress is the current progress
    */
-  virtual void updateProgress(double progress) = 0;
+  void updateProgress(double progress);
+
+  /**
+   *  @brief This signal will be emitted, when something may have went wrong
+   *  @param progress is the current progress
+   */
+  void emitWarning(const QString& warning);
 
   /**
    *  @brief This signal will be emitted if the scheduling finished successfully
    *  @param plan is a pointer to the scheduled plan
    */
-  virtual void finishedScheduling(QSharedPointer<Plan> plan) = 0;
+  void finishedScheduling(QSharedPointer<Plan> plan);
 
   /**
    *  @brief This signal will be emitted, if scheduling failed
    *  @param message contains a message with information about the failure
    */
-  virtual void failedScheduling(QString message) = 0;
+  void failedScheduling(QString message);
 };
 
 #endif  // SCHEDULER_H

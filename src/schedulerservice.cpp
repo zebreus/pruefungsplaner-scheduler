@@ -1,16 +1,10 @@
 #include "schedulerservice.h"
 
-SchedulerService::SchedulerService(
-    const QSharedPointer<Configuration> configuration,
-    QObject* parent)
-    : QObject(parent),
-      configuration(configuration),
-      scheduler(nullptr),
-      progress(0.0),
-      result(QJsonValue::Undefined) {}
+SchedulerService::SchedulerService(const QSharedPointer<Configuration> configuration, QObject* parent)
+    : QObject(parent), configuration(configuration), scheduler(nullptr), progress(0.0), result(QJsonValue::Undefined) {}
 
 bool SchedulerService::startScheduling(QJsonObject plan) {
-  if (scheduler != nullptr) {
+  if(scheduler != nullptr) {
     return false;
   }
 
@@ -18,35 +12,36 @@ bool SchedulerService::startScheduling(QJsonObject plan) {
   planPointer->fromJsonObject(plan);
 
   QString schedulingAlgorithm = configuration->getDefaultSchedulingAlgorithm();
-  if (schedulingAlgorithm.startsWith("legacy")) {
+  if(schedulingAlgorithm.startsWith("legacy")) {
     LegacyScheduler::SchedulingMode legacySchedulerMode;
-    if (schedulingAlgorithm == "legacy-fast") {
+    if(schedulingAlgorithm == "legacy-fast") {
       legacySchedulerMode = LegacyScheduler::Fast;
     } else {
       legacySchedulerMode = LegacyScheduler::Good;
     }
-    scheduler.reset(new LegacyScheduler(
-        planPointer, configuration->getLegacySchedulerAlgorithmBinary(),
-        configuration->getLegacySchedulerPrintLog(), legacySchedulerMode));
+    scheduler.reset(new LegacyScheduler(planPointer,
+                                        configuration->getLegacySchedulerAlgorithmBinary(),
+                                        configuration->getLegacySchedulerPrintLog(),
+                                        legacySchedulerMode));
   } else {
     return false;
   }
 
-  QObject::connect(
-      (LegacyScheduler*)scheduler.data(), &LegacyScheduler::updateProgress,
-      [this](double updatedProgress) { progress = updatedProgress; });
-  QObject::connect((LegacyScheduler*)scheduler.data(),
-                   &LegacyScheduler::failedScheduling,
-                   [this](QString errorMessage) {
-                     result = errorMessage;
-                     progress = 1.0;
-                   });
-  QObject::connect((LegacyScheduler*)scheduler.data(),
-                   &LegacyScheduler::finishedScheduling,
-                   [this](QSharedPointer<Plan> scheduledPlan) {
-                     result = scheduledPlan->toJsonObject();
-                     progress = 1.0;
-                   });
+  QObject::connect(scheduler.data(), &Scheduler::updateProgress, [this](double updatedProgress) {
+    progress = updatedProgress;
+  });
+  QObject::connect(scheduler.data(), &Scheduler::updateProgress, this, &SchedulerService::updateProgress);
+  QObject::connect(scheduler.data(), &Scheduler::failedScheduling, this, &SchedulerService::failedScheduling);
+  QObject::connect(scheduler.data(), &Scheduler::emitWarning, this, &SchedulerService::emitWarning);
+  QObject::connect(scheduler.data(), &Scheduler::failedScheduling, [this](QString errorMessage) {
+    result = errorMessage;
+    progress = 1.0;
+  });
+  QObject::connect(scheduler.data(), &Scheduler::finishedScheduling, [this](QSharedPointer<Plan> scheduledPlan) {
+    result = scheduledPlan->toJsonObject();
+    emit finishedScheduling(result.toObject());
+    progress = 1.0;
+  });
 
   scheduler->startScheduling();
 
