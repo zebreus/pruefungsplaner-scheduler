@@ -7,6 +7,7 @@
 
 #include <gmock/gmock-matchers.h>
 #include <gtest/gtest.h>
+
 #include <QString>
 #include <ostream>
 #include <sstream>

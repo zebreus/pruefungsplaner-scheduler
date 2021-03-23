@@ -1,4 +1,5 @@
 #include <QCoreApplication>
+
 #include "server.h"
 #include "src/schedulerservice.h"
 
