@@ -92,16 +92,26 @@ TEST(legacySchedulerTests, startSchedulingEmitsPointerFromConstructorOnSuccess) 
   LegacyScheduler scheduler(plan);
 
   QSharedPointer<Plan> emittedPlan = nullptr;
+  bool finished = false;
+  bool failed = false;
   QObject::connect(&scheduler, &Scheduler::finishedScheduling, [&emittedPlan](QSharedPointer<Plan> plan) {
     emittedPlan = plan;
   });
-
-  scheduler.startScheduling();
+  QCoreApplication::connect(&scheduler, &Scheduler::finishedScheduling, [&finished]() {
+    finished = true;
+  });
+  QCoreApplication::connect(&scheduler, &Scheduler::failedScheduling, [&failed]() {
+    failed = true;
+  });
+  ASSERT_TRUE(scheduler.startScheduling());
 
   QTime limit = QTime::currentTime().addMSecs(500);
-  while(QTime::currentTime() < limit && emittedPlan == nullptr) {
+  while(QTime::currentTime() < limit && !finished && !failed && emittedPlan == nullptr) {
     QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
   }
+
+  ASSERT_TRUE(finished);
+  ASSERT_FALSE(failed);
 
   ASSERT_NE(emittedPlan, nullptr);
   ASSERT_EQ(emittedPlan, plan);
